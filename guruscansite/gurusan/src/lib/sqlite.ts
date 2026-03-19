@@ -4,15 +4,12 @@ import fs from 'fs'
 
 const srcDbPath = process.env.SQLITE_PATH || path.join(process.cwd(), 'gurusan.db')
 
-// On Vercel (read-only filesystem), copy DB to /tmp so SQLite can write WAL/shm files.
-// In dev, just use the source path directly.
+// On Vercel (read-only filesystem), copy DB to /tmp so SQLite can open with WAL.
 let dbPath = srcDbPath
-const isVercel = !!process.env.VERCEL
-if (isVercel) {
+if (process.env.VERCEL) {
   const tmpPath = '/tmp/gurusan.db'
   if (!fs.existsSync(tmpPath)) {
     fs.copyFileSync(srcDbPath, tmpPath)
-    // Also copy WAL/SHM if they exist (they won't on fresh deploy)
     try { fs.copyFileSync(srcDbPath + '-wal', tmpPath + '-wal') } catch {}
     try { fs.copyFileSync(srcDbPath + '-shm', tmpPath + '-shm') } catch {}
   }
@@ -23,7 +20,8 @@ const globalForDb = globalThis as unknown as { _db?: Database.Database }
 
 export const db: Database.Database = globalForDb._db ?? new Database(dbPath)
 
-if (process.env.NODE_ENV !== 'production') globalForDb._db = db
+// Cache in both dev and prod (avoid re-opening per serverless invocation within same lambda)
+globalForDb._db = db
 
 export function migrate() {
   db.exec(`
@@ -145,13 +143,8 @@ export function migrate() {
   CREATE INDEX IF NOT EXISTS idx_reviews_rating ON reviews(rating);
   `)
 
-  // lightweight “migrations” for existing DBs (safe to run repeatedly)
   const addCol = (table: string, col: string, type: string) => {
-    try {
-      db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} ${type}`)
-    } catch {
-      // ignore (already exists)
-    }
+    try { db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} ${type}`) } catch {}
   }
   addCol('gurus', 'image_url', 'TEXT')
   addCol('gurus', 'twitter_url', 'TEXT')
@@ -169,20 +162,16 @@ export function migrate() {
   addCol('gurus', 'whop_star_counts', 'TEXT')
   addCol('gurus', 'whop_route', 'TEXT')
   addCol('gurus', 'whop_synced_at', 'INTEGER')
-
   addCol('gurus', 'guru_rating', 'REAL')
   addCol('gurus', 'guru_reviews_count', 'INTEGER')
-
   addCol('courses', 'image_url', 'TEXT')
   addCol('courses', 'whop_rating', 'REAL')
   addCol('courses', 'whop_reviews_count', 'INTEGER')
   addCol('courses', 'whop_star_counts', 'TEXT')
   addCol('courses', 'summary', 'TEXT')
   addCol('courses', 'whop_synced_at', 'INTEGER')
-
   addCol('reviews', 'anonymous', 'INTEGER NOT NULL DEFAULT 0')
 
-  // aliases table for better search (creator name != product name)
   db.exec(`
     CREATE TABLE IF NOT EXISTS guru_aliases (
       id TEXT PRIMARY KEY,
@@ -198,112 +187,37 @@ export function migrate() {
 }
 
 export function seed() {
-  // Seed can run concurrently during `next build` page-data collection.
-  // Use an immediate transaction + INSERT OR IGNORE to make it safe/idempotent.
   db.exec('BEGIN IMMEDIATE')
   try {
     const row = db.prepare('SELECT COUNT(1) as c FROM gurus').get() as { c: number }
-    if (row.c > 0) {
-      db.exec('COMMIT')
-      return
-    }
+    if (row.c > 0) { db.exec('COMMIT'); return }
 
     const ts = Date.now()
     const insertGuru = db.prepare(
-      `INSERT OR IGNORE INTO gurus (
-        id, name, handle, category, bio, whop_url,
-        image_url, twitter_url, youtube_url, tiktok_url, instagram_url, website_url,
-        verified, whop_rating, whop_reviews_count, guru_rating, guru_reviews_count,
-        created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT OR IGNORE INTO gurus (id,name,handle,category,bio,whop_url,image_url,twitter_url,youtube_url,tiktok_url,instagram_url,website_url,verified,whop_rating,whop_reviews_count,guru_rating,guru_reviews_count,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
     const insertCourse = db.prepare(
-      `INSERT OR IGNORE INTO courses (id, guru_id, name, whop_url, image_url, price_cents, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT OR IGNORE INTO courses (id,guru_id,name,whop_url,image_url,price_cents,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?)`
     )
 
-  const gurus = [
-    {
-      id: 'g_example',
-      name: 'Example Trading Guru',
-      handle: 'exampleguru',
-      category: 'Trading',
-      bio: 'Mock profile. Replace with real Whop top performers.',
-      whop_url: 'https://whop.com/',
-      image_url: 'https://api.dicebear.com/9.x/identicon/svg?seed=exampleguru',
-      twitter_url: 'https://x.com/',
-      youtube_url: 'https://youtube.com/',
-      tiktok_url: 'https://tiktok.com/',
-      instagram_url: 'https://instagram.com/',
-      website_url: 'https://example.com/',
-      verified: 0,
-      whop_rating: 4.6,
-      whop_reviews_count: 128,
-      guru_rating: null,
-      guru_reviews_count: 0,
-      courses: [{ id: 'c_example', name: 'NQ Levels Pack', whop_url: 'https://whop.com/', image_url: 'https://picsum.photos/seed/nq/640/360', price_cents: 4999 }],
-    },
-    {
-      id: 'g_futureslab',
-      name: 'Futures Systems Lab',
-      handle: 'futureslab',
-      category: 'Trading',
-      bio: 'Mock profile.',
-      whop_url: 'https://whop.com/',
-      image_url: 'https://api.dicebear.com/9.x/identicon/svg?seed=futureslab',
-      twitter_url: 'https://x.com/',
-      youtube_url: 'https://youtube.com/',
-      tiktok_url: 'https://tiktok.com/',
-      instagram_url: null,
-      website_url: null,
-      verified: 1,
-      whop_rating: 4.2,
-      whop_reviews_count: 52,
-      guru_rating: 4.8,
-      guru_reviews_count: 17,
-      courses: [{ id: 'c_rules', name: 'Prop Firm Rules 101', whop_url: 'https://whop.com/', image_url: 'https://picsum.photos/seed/prop/640/360', price_cents: 2999 }],
-    },
-  ]
+    const gurus = [
+      { id:'g_example',name:'Example Trading Guru',handle:'exampleguru',category:'Trading',bio:'Mock profile.',whop_url:'https://whop.com/',image_url:'https://api.dicebear.com/9.x/identicon/svg?seed=exampleguru',twitter_url:'https://x.com/',youtube_url:'https://youtube.com/',tiktok_url:'https://tiktok.com/',instagram_url:'https://instagram.com/',website_url:'https://example.com/',verified:0,whop_rating:4.6,whop_reviews_count:128,guru_rating:null,guru_reviews_count:0,courses:[{id:'c_example',name:'NQ Levels Pack',whop_url:'https://whop.com/',image_url:'https://picsum.photos/seed/nq/640/360',price_cents:4999}]},
+      { id:'g_futureslab',name:'Futures Systems Lab',handle:'futureslab',category:'Trading',bio:'Mock profile.',whop_url:'https://whop.com/',image_url:'https://api.dicebear.com/9.x/identicon/svg?seed=futureslab',twitter_url:'https://x.com/',youtube_url:'https://youtube.com/',tiktok_url:'https://tiktok.com/',instagram_url:null,website_url:null,verified:1,whop_rating:4.2,whop_reviews_count:52,guru_rating:4.8,guru_reviews_count:17,courses:[{id:'c_rules',name:'Prop Firm Rules 101',whop_url:'https://whop.com/',image_url:'https://picsum.photos/seed/prop/640/360',price_cents:2999}]},
+    ]
 
     const tx = db.transaction(() => {
       for (const g of gurus) {
-        insertGuru.run(
-          g.id,
-          g.name,
-          g.handle,
-          g.category,
-          g.bio,
-          g.whop_url,
-          g.image_url,
-          g.twitter_url,
-          g.youtube_url,
-          g.tiktok_url,
-          g.instagram_url,
-          g.website_url,
-          g.verified,
-          g.whop_rating,
-          g.whop_reviews_count,
-          g.guru_rating,
-          g.guru_reviews_count,
-          ts,
-          ts
-        )
-        for (const c of g.courses) {
-          insertCourse.run(c.id, g.id, c.name, c.whop_url, c.image_url, c.price_cents, ts, ts)
-        }
+        insertGuru.run(g.id,g.name,g.handle,g.category,g.bio,g.whop_url,g.image_url,g.twitter_url,g.youtube_url,g.tiktok_url,g.instagram_url,g.website_url,g.verified,g.whop_rating,g.whop_reviews_count,g.guru_rating,g.guru_reviews_count,ts,ts)
+        for (const c of g.courses) { insertCourse.run(c.id,g.id,c.name,c.whop_url,c.image_url,c.price_cents,ts,ts) }
       }
     })
     tx()
-
     db.exec('COMMIT')
   } catch (e) {
-    try {
-      db.exec('ROLLBACK')
-    } catch {}
+    try { db.exec('ROLLBACK') } catch {}
     throw e
   }
 }
 
-// run migrations + seed on first import
 migrate()
 seed()

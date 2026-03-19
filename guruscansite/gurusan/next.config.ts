@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Mark better-sqlite3 as external so it doesn't get bundled/broken by webpack
   serverExternalPackages: ["better-sqlite3"],
+  
+  // Include the DB file in the serverless function bundle
+  outputFileTracingIncludes: {
+    '/*': ['./gurusan.db'],
+  },
   // Allow dev access from the public IP + localhost.
   // This prevents Next from refusing requests with:
   // “explicitly configure allowedDevOrigins”.
