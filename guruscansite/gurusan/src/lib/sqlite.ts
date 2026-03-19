@@ -1,7 +1,23 @@
 import Database from 'better-sqlite3'
 import path from 'path'
+import fs from 'fs'
 
-const dbPath = process.env.SQLITE_PATH || path.join(process.cwd(), 'gurusan.db')
+const srcDbPath = process.env.SQLITE_PATH || path.join(process.cwd(), 'gurusan.db')
+
+// On Vercel (read-only filesystem), copy DB to /tmp so SQLite can write WAL/shm files.
+// In dev, just use the source path directly.
+let dbPath = srcDbPath
+const isVercel = !!process.env.VERCEL
+if (isVercel) {
+  const tmpPath = '/tmp/gurusan.db'
+  if (!fs.existsSync(tmpPath)) {
+    fs.copyFileSync(srcDbPath, tmpPath)
+    // Also copy WAL/SHM if they exist (they won't on fresh deploy)
+    try { fs.copyFileSync(srcDbPath + '-wal', tmpPath + '-wal') } catch {}
+    try { fs.copyFileSync(srcDbPath + '-shm', tmpPath + '-shm') } catch {}
+  }
+  dbPath = tmpPath
+}
 
 const globalForDb = globalThis as unknown as { _db?: Database.Database }
 

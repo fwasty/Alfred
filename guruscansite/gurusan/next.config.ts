@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Mark better-sqlite3 as external so it doesn't get bundled/broken by webpack
+  serverExternalPackages: ["better-sqlite3"],
   // Allow dev access from the public IP + localhost.
   // This prevents Next from refusing requests with:
   // “explicitly configure allowedDevOrigins”.
