@@ -1,0 +1,383 @@
+{
+  "updated": 21,
+  "changed": [
+    {
+      "guru": {
+        "handle": "pbtrading",
+        "name": "PB Trading",
+        "creator_id": "52dcc24dbc574250af239e582a0f61a3"
+      },
+      "creator": {
+        "id": "52dcc24dbc574250af239e582a0f61a3",
+        "slug": "pb-trading-team",
+        "name": "PB Trading (Patrick Lovelace & Blake)",
+        "instagram_url": "https://www.instagram.com/officialpbtrading/",
+        "tiktok_url": null,
+        "youtube_url": "https://www.youtube.com/@PBBlakeYT",
+        "twitter_url": null,
+        "website_url": "https://whop.com/pbtrading/",
+        "image_url": "https://unavatar.io/instagram/officialpbtrading"
+      }
+    },
+    {
+      "guru": {
+        "handle": "tjr-indicators-bundle",
+        "name": "TJRTRADES",
+        "creator_id": "ae271fddfeca4c1db9ed5e36e32c8236"
+      },
+      "creator": {
+        "id": "ae271fddfeca4c1db9ed5e36e32c8236",
+        "slug": "tjr-trades",
+        "name": "TJR Trades",
+        "instagram_url": "https://instagram.com/tjrtrading",
+        "tiktok_url": "https://www.tiktok.com/@tjr",
+        "youtube_url": "https://www.youtube.com/channel/UCGHBUXjDCeiIXNdKR0HUZnA",
+        "twitter_url": "https://x.com/_TJRTrades",
+        "website_url": "https://tjrtrades.com/",
+        "image_url": "https://unavatar.io/instagram/tjrtrading"
+      }
+    },
+    {
+      "guru": {
+        "handle": "motion-network",
+        "name": "Motion Network",
+        "creator_id": "94c960a9ab47423584856d6fd2720fec"
+      },
+      "creator": {
+        "id": "94c960a9ab47423584856d6fd2720fec",
+        "slug": "riley-botha",
+        "name": "Riley Botha",
+        "instagram_url": "https://www.instagram.com/riley_botha/",
+        "tiktok_url": "https://www.tiktok.com/@riley_botha",
+        "youtube_url": "https://www.youtube.com/@RileyBotha",
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/riley_botha"
+      }
+    },
+    {
+      "guru": {
+        "handle": "brez-marketing",
+        "name": "Brez Marketing",
+        "creator_id": "72c0ae9b0ed5419c83cad5a8520f710b"
+      },
+      "creator": {
+        "id": "72c0ae9b0ed5419c83cad5a8520f710b",
+        "slug": "brezscales",
+        "name": "Brezscales",
+        "instagram_url": "https://www.instagram.com/brezscales/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/brezscales"
+      }
+    },
+    {
+      "guru": {
+        "handle": "potion-alpha",
+        "name": "Potion Alpha",
+        "creator_id": "ebf22b54ea9a4e23a7ba50c567a323d7"
+      },
+      "creator": {
+        "id": "ebf22b54ea9a4e23a7ba50c567a323d7",
+        "slug": "orangie",
+        "name": "Orangie",
+        "instagram_url": null,
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": null
+      }
+    },
+    {
+      "guru": {
+        "handle": "stock-hours",
+        "name": "Stock Hours",
+        "creator_id": "233ca8a2f03444bfa1c8d9ecca6053b4"
+      },
+      "creator": {
+        "id": "233ca8a2f03444bfa1c8d9ecca6053b4",
+        "slug": "nourtrades",
+        "name": "NourTrades",
+        "instagram_url": "https://www.instagram.com/nourtrades/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/nourtrades"
+      }
+    },
+    {
+      "guru": {
+        "handle": "raketrades",
+        "name": "RakeTrades",
+        "creator_id": "86af42afb21f404ca957da16b1d3190a"
+      },
+      "creator": {
+        "id": "86af42afb21f404ca957da16b1d3190a",
+        "slug": "jake-ricci",
+        "name": "Jake Ricci",
+        "instagram_url": "https://www.instagram.com/raketrades/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/raketrades"
+      }
+    },
+    {
+      "guru": {
+        "handle": "miles-high-club",
+        "name": "Miles High Club",
+        "creator_id": "f5b92e26f7d04a2795ce91a7689a0d72"
+      },
+      "creator": {
+        "id": "f5b92e26f7d04a2795ce91a7689a0d72",
+        "slug": "miles-deutscher",
+        "name": "Miles Deutscher",
+        "instagram_url": "https://www.instagram.com/miles_deutscher/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/miles_deutscher"
+      }
+    },
+    {
+      "guru": {
+        "handle": "market-fluidity-uni",
+        "name": "Market Fluidity University",
+        "creator_id": "4a7e80b45a4b40358bea980cd927b7be"
+      },
+      "creator": {
+        "id": "4a7e80b45a4b40358bea980cd927b7be",
+        "slug": "raja-banks",
+        "name": "Raja Banks",
+        "instagram_url": "https://www.instagram.com/marketfluidity/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/marketfluidity"
+      }
+    },
+    {
+      "guru": {
+        "handle": "botostrading",
+        "name": "Botos Trading Academy",
+        "creator_id": "fa0cc664e6824853a90d507691e74350"
+      },
+      "creator": {
+        "id": "fa0cc664e6824853a90d507691e74350",
+        "slug": "erik-botos",
+        "name": "Erik Botos",
+        "instagram_url": "https://www.instagram.com/erikbotoss/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/erikbotoss"
+      }
+    },
+    {
+      "guru": {
+        "handle": "team-bull-trading",
+        "name": "Team Bull Trading",
+        "creator_id": "ae0adbee07fe49b9a7a5225bd3c35fd3"
+      },
+      "creator": {
+        "id": "ae0adbee07fe49b9a7a5225bd3c35fd3",
+        "slug": "jdun",
+        "name": "Jdun",
+        "instagram_url": "https://www.instagram.com/jdun_trades/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/jdun_trades"
+      }
+    },
+    {
+      "guru": {
+        "handle": "adt",
+        "name": "American Dream Trading LLC",
+        "creator_id": "81a8b31281624845882b1b393277a7f5"
+      },
+      "creator": {
+        "id": "81a8b31281624845882b1b393277a7f5",
+        "slug": "coachcwc",
+        "name": "CoachCWC",
+        "instagram_url": "https://www.instagram.com/coachcwc/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/coachcwc"
+      }
+    },
+    {
+      "guru": {
+        "handle": "the-options-cartel",
+        "name": "The Options Cartel",
+        "creator_id": "ab33574d69ff4874be8e7037c049f24c"
+      },
+      "creator": {
+        "id": "ab33574d69ff4874be8e7037c049f24c",
+        "slug": "sean-trades",
+        "name": "Sean Trades",
+        "instagram_url": "https://www.instagram.com/srxtrades_/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/srxtrades_"
+      }
+    },
+    {
+      "guru": {
+        "handle": "options-insider",
+        "name": "Options Insider",
+        "creator_id": "c8fb10cd06d14b0e805dcfc0e8138996"
+      },
+      "creator": {
+        "id": "c8fb10cd06d14b0e805dcfc0e8138996",
+        "slug": "options-insider",
+        "name": "Options Insider",
+        "instagram_url": "https://www.instagram.com/options_insider/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/options_insider"
+      }
+    },
+    {
+      "guru": {
+        "handle": "stockdads",
+        "name": "Stock Dads",
+        "creator_id": "6cce627c58c448fbb635bf87a400251e"
+      },
+      "creator": {
+        "id": "6cce627c58c448fbb635bf87a400251e",
+        "slug": "stock-dads",
+        "name": "Stock Dads",
+        "instagram_url": "https://www.instagram.com/stockdads/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/stockdads"
+      }
+    },
+    {
+      "guru": {
+        "handle": "crystal-academy",
+        "name": "Crystal Academy",
+        "creator_id": "d68d812437ab4818a46dd1b8d8cae41d"
+      },
+      "creator": {
+        "id": "d68d812437ab4818a46dd1b8d8cae41d",
+        "slug": "crystal-academy",
+        "name": "Crystal Academy",
+        "instagram_url": "https://www.instagram.com/crystalacademytrades/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/crystalacademytrades"
+      }
+    },
+    {
+      "guru": {
+        "handle": "superluckeee",
+        "name": "SuperLuckeee Trading",
+        "creator_id": "d31b633c086b4df699152ed885b4b0ab"
+      },
+      "creator": {
+        "id": "d31b633c086b4df699152ed885b4b0ab",
+        "slug": "superluckeee",
+        "name": "Superluckeee",
+        "instagram_url": "https://www.instagram.com/superluckeee/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/superluckeee"
+      }
+    },
+    {
+      "guru": {
+        "handle": "tradeproelite",
+        "name": "TradeProElite",
+        "creator_id": "b7d9fafbdeb042c2819172690439634e"
+      },
+      "creator": {
+        "id": "b7d9fafbdeb042c2819172690439634e",
+        "slug": "enhancedmarket",
+        "name": "EnhancedMarket",
+        "instagram_url": "https://www.instagram.com/enhancedmarket/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/enhancedmarket"
+      }
+    },
+    {
+      "guru": {
+        "handle": "toodegrees",
+        "name": "Toodegrees",
+        "creator_id": "13bce28cac5345779067e61d3b2c5ec5"
+      },
+      "creator": {
+        "id": "13bce28cac5345779067e61d3b2c5ec5",
+        "slug": "toodegrees",
+        "name": "Toodegrees",
+        "instagram_url": "https://www.instagram.com/toodegrees/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/toodegrees"
+      }
+    },
+    {
+      "guru": {
+        "handle": "owls-options-traders",
+        "name": "Owls Options Traders",
+        "creator_id": "89d1746198384a069edf7e59f68b490e"
+      },
+      "creator": {
+        "id": "89d1746198384a069edf7e59f68b490e",
+        "slug": "owls-investments",
+        "name": "Owls Investments",
+        "instagram_url": "https://www.instagram.com/owlsinvestments/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/owlsinvestments"
+      }
+    },
+    {
+      "guru": {
+        "handle": "the-traveling-trader",
+        "name": "The Traveling Trader",
+        "creator_id": "ac99ab9c6e204360b874282274a28b5e"
+      },
+      "creator": {
+        "id": "ac99ab9c6e204360b874282274a28b5e",
+        "slug": "the-traveling-trader",
+        "name": "The Traveling Trader",
+        "instagram_url": "https://www.instagram.com/thetravel1ngtrader/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "image_url": "https://unavatar.io/instagram/thetravel1ngtrader"
+      }
+    }
+  ]
+}

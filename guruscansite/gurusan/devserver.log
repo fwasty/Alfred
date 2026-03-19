@@ -1,0 +1,27 @@
+
+> gurusan@0.1.0 dev
+> next dev --port 3405
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3405
+- Network:       http://187.77.26.215:3405
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 3.6s
+ POST /api/whop/sync 200 in 9.3s (compile: 641ms, render: 8.6s)
+ POST /api/whop/sync 200 in 9.4s (compile: 8ms, render: 9.4s)
+ POST /api/whop/sync 200 in 7.8s (compile: 2ms, render: 7.8s)
+ POST /api/whop/sync 200 in 7.4s (compile: 1830µs, render: 7.4s)
+ POST /api/whop/sync 200 in 8.8s (compile: 15ms, render: 8.8s)
+ POST /api/whop/sync 200 in 8.3s (compile: 13ms, render: 8.3s)
+ POST /api/whop/sync 200 in 7.5s (compile: 2ms, render: 7.4s)
+ POST /api/whop/sync 404 in 9ms (compile: 1993µs, render: 7ms)
+ POST /api/whop/sync 200 in 8.1s (compile: 3ms, render: 8.1s)
+ POST /api/whop/sync 200 in 7.1s (compile: 3ms, render: 7.1s)
+ POST /api/whop/sync 200 in 6.3s (compile: 2ms, render: 6.3s)
+ POST /api/whop/sync 200 in 7.8s (compile: 2ms, render: 7.8s)
+ POST /api/whop/sync 200 in 7.7s (compile: 1944µs, render: 7.7s)
+ POST /api/whop/sync 404 in 7ms (compile: 1807µs, render: 5ms)
+ POST /api/whop/sync 200 in 8.5s (compile: 12ms, render: 8.5s)
+ POST /api/whop/sync 200 in 12.0s (compile: 4ms, render: 12.0s)

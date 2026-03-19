@@ -1,0 +1,13 @@
+
+> gurusan@0.1.0 dev
+> next dev -p 3012
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3012
+- Network:       http://187.77.26.215:3012
+- Environments: .env
+
+✓ Starting...
+⨯ Unable to acquire lock at /root/.openclaw/workspace/guruscansite/gurusan/.next/dev/lock, is another instance of next dev running?
+  Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h

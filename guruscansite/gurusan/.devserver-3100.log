@@ -1,0 +1,11 @@
+
+> gurusan@0.1.0 dev
+> next dev -p 3100
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3100
+- Network:       http://187.77.26.215:3100
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 999ms

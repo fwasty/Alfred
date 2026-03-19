@@ -1,0 +1,30 @@
+# Alfred workspace
+.venv/
+__pycache__/
+node_modules/
+
+# Local/ephemeral
+cron_state/
+devserver.pid
+out/
+media_in/
+tmp_*.png
+tmp_video_frames/
+
+# Large media exports (store elsewhere / LFS)
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.zip
+*.7z
+*.tar
+*.gz
+
+# Secrets
+.env
+*.key
+*.pem
+Alfred
+.openclaw/
+Alfred/

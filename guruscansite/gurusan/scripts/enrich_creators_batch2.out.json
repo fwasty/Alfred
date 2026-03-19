@@ -1,0 +1,95 @@
+{
+  "updated": 5,
+  "changed": [
+    {
+      "guru": {
+        "handle": "ugc-factory",
+        "name": "Whop",
+        "creator_id": "683aff7732824418ddae9018377ff721"
+      },
+      "creator": {
+        "id": "683aff7732824418ddae9018377ff721",
+        "slug": "whop",
+        "name": "Whop",
+        "instagram_url": "https://www.instagram.com/whop/",
+        "tiktok_url": null,
+        "youtube_url": "https://www.youtube.com/@WhopIO",
+        "twitter_url": "https://x.com/whop",
+        "website_url": "https://whop.com/",
+        "image_url": "https://unavatar.io/instagram/whop"
+      }
+    },
+    {
+      "guru": {
+        "handle": "whop-clips",
+        "name": "Whop",
+        "creator_id": "683aff7732824418ddae9018377ff721"
+      },
+      "creator": {
+        "id": "683aff7732824418ddae9018377ff721",
+        "slug": "whop",
+        "name": "Whop",
+        "instagram_url": "https://www.instagram.com/whop/",
+        "tiktok_url": null,
+        "youtube_url": "https://www.youtube.com/@WhopIO",
+        "twitter_url": "https://x.com/whop",
+        "website_url": "https://whop.com/",
+        "image_url": "https://unavatar.io/instagram/whop"
+      }
+    },
+    {
+      "guru": {
+        "handle": "whop-affiliates",
+        "name": "Whop",
+        "creator_id": "683aff7732824418ddae9018377ff721"
+      },
+      "creator": {
+        "id": "683aff7732824418ddae9018377ff721",
+        "slug": "whop",
+        "name": "Whop",
+        "instagram_url": "https://www.instagram.com/whop/",
+        "tiktok_url": null,
+        "youtube_url": "https://www.youtube.com/@WhopIO",
+        "twitter_url": "https://x.com/whop",
+        "website_url": "https://whop.com/",
+        "image_url": "https://unavatar.io/instagram/whop"
+      }
+    },
+    {
+      "guru": {
+        "handle": "officialpicks",
+        "name": "Official Picks",
+        "creator_id": "88a2a97f83ea96933302278db5d97668"
+      },
+      "creator": {
+        "id": "88a2a97f83ea96933302278db5d97668",
+        "slug": "official-picks",
+        "name": "Official Picks",
+        "instagram_url": "https://www.instagram.com/officialpickss/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": "https://x.com/officialpickss",
+        "website_url": "https://whop.com/officialpicks/",
+        "image_url": "https://unavatar.io/instagram/officialpickss"
+      }
+    },
+    {
+      "guru": {
+        "handle": "clipit",
+        "name": "ClipIt",
+        "creator_id": "9b6779b785d8451aa7e0ae1ebfecd70a"
+      },
+      "creator": {
+        "id": "9b6779b785d8451aa7e0ae1ebfecd70a",
+        "slug": "clipit",
+        "name": "SERVIUOS (ClipIt)",
+        "instagram_url": "https://www.instagram.com/serviuos/",
+        "tiktok_url": null,
+        "youtube_url": null,
+        "twitter_url": null,
+        "website_url": "https://www.serviuos.com/",
+        "image_url": "https://unavatar.io/instagram/serviuos"
+      }
+    }
+  ]
+}

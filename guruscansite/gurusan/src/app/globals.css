@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+:root {
+  /* theme tokens */
+  --page-bg: #ffffff;
+  --surface: rgba(255, 255, 255, 0.86);
+  --surface-2: rgba(255, 255, 255, 0.72);
+  --border: rgba(0, 0, 0, 0.12);
+  --text: #0a0a0a;
+  --muted: rgba(10, 10, 10, 0.70);
+  --muted-2: rgba(10, 10, 10, 0.55);
+  --accent: #111827;
+}
+
+/* Theme 1: Paper (RMP-ish) */
+:root[data-theme='paper'] {
+  --page-bg: radial-gradient(1200px 600px at 15% -10%, rgba(99, 102, 241, 0.16), transparent 60%),
+    radial-gradient(900px 520px at 95% 10%, rgba(236, 72, 153, 0.12), transparent 58%),
+    linear-gradient(to bottom, #ffffff, #fafafa);
+  --surface: rgba(255, 255, 255, 0.86);
+  --surface-2: rgba(255, 255, 255, 0.72);
+  --border: rgba(0, 0, 0, 0.12);
+  --text: #0a0a0a;
+  --muted: rgba(10, 10, 10, 0.72);
+  --muted-2: rgba(10, 10, 10, 0.58);
+  --accent: #111827;
+}
+
+/* Theme 2: Midnight */
+:root[data-theme='midnight'] {
+  --page-bg: radial-gradient(1200px 600px at 20% -10%, rgba(34, 211, 238, 0.15), transparent 60%),
+    radial-gradient(900px 520px at 95% 10%, rgba(168, 85, 247, 0.16), transparent 58%),
+    linear-gradient(to bottom, #05060a, #0b1020);
+  --surface: rgba(16, 18, 27, 0.84);
+  --surface-2: rgba(16, 18, 27, 0.70);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+  --muted-2: rgba(255, 255, 255, 0.55);
+  --accent: #22d3ee;
+}
+
+/* Theme 3: Mono */
+:root[data-theme='mono'] {
+  --page-bg: linear-gradient(to bottom, #ffffff, #f7f7f7);
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-2: rgba(255, 255, 255, 0.78);
+  --border: rgba(0, 0, 0, 0.16);
+  --text: #0b0b0b;
+  --muted: rgba(11, 11, 11, 0.70);
+  --muted-2: rgba(11, 11, 11, 0.55);
+  --accent: #0b0b0b;
+}
+
+/* Theme 4: Glass */
+:root[data-theme='glass'] {
+  /* Exaggerated pastel glass */
+  --page-bg:
+    radial-gradient(1200px 700px at 8% 0%, rgba(59, 130, 246, 0.42), transparent 60%),
+    radial-gradient(1100px 700px at 100% 12%, rgba(236, 72, 153, 0.30), transparent 62%),
+    radial-gradient(900px 620px at 70% 90%, rgba(34, 197, 94, 0.18), transparent 60%),
+    radial-gradient(900px 620px at 20% 85%, rgba(249, 115, 22, 0.18), transparent 60%),
+    linear-gradient(to bottom, #ffffff, #f6f7ff);
+  --surface: rgba(255, 255, 255, 0.66);
+  --surface-2: rgba(255, 255, 255, 0.52);
+  --border: rgba(0, 0, 0, 0.12);
+  --text: #0a0a0a;
+  --muted: rgba(10, 10, 10, 0.72);
+  --muted-2: rgba(10, 10, 10, 0.58);
+  --accent: #2563eb;
+}
+
+/* Theme 5: Editorial */
+:root[data-theme='editorial'] {
+  --page-bg: linear-gradient(to bottom, #ffffff, #f8fafc);
+  --surface: rgba(255, 255, 255, 0.94);
+  --surface-2: rgba(255, 255, 255, 0.86);
+  --border: rgba(15, 23, 42, 0.14);
+  --text: #0f172a;
+  --muted: rgba(15, 23, 42, 0.72);
+  --muted-2: rgba(15, 23, 42, 0.56);
+  --accent: #0f172a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* widest support */
+  overscroll-behavior-x: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}

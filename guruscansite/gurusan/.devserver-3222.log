@@ -1,0 +1,26 @@
+
+> gurusan@0.1.0 dev
+> next dev -p 3222
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3222
+- Network:       http://187.77.26.215:3222
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 1645ms
+ POST /api/whop/sync 200 in 8.8s (compile: 378ms, render: 8.4s)
+ POST /api/whop/sync 200 in 8.4s (compile: 10ms, render: 8.3s)
+ POST /api/whop/sync 200 in 9.0s (compile: 5ms, render: 9.0s)
+ POST /api/whop/sync 200 in 6.5s (compile: 4ms, render: 6.5s)
+ POST /api/whop/sync 200 in 6.3s (compile: 6ms, render: 6.3s)
+ POST /api/whop/sync 200 in 7.6s (compile: 54ms, render: 7.6s)
+ POST /api/whop/sync 200 in 6.4s (compile: 28ms, render: 6.4s)
+ POST /api/whop/sync 200 in 6.6s (compile: 8ms, render: 6.6s)
+ POST /api/whop/sync 200 in 3.2s (compile: 23ms, render: 3.2s)
+ POST /api/whop/sync 200 in 3.9s (compile: 5ms, render: 3.9s)
+ POST /api/whop/sync 200 in 3.1s (compile: 9ms, render: 3.1s)
+ POST /api/whop/sync 200 in 3.1s (compile: 2ms, render: 3.1s)
+ POST /api/whop/sync 200 in 3.6s (compile: 6ms, render: 3.6s)
+ POST /api/whop/sync 200 in 7.9s (compile: 1751µs, render: 7.9s)
+ POST /api/whop/sync 200 in 8.6s (compile: 1579µs, render: 8.6s)

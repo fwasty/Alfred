@@ -1,0 +1,94 @@
+const Database = require('better-sqlite3');
+const path = require('path');
+const crypto = require('crypto');
+
+const dbPath = process.env.SQLITE_PATH || path.join(process.cwd(), 'gurusan.db');
+const db = new Database(dbPath);
+
+function cuid() { return crypto.randomUUID().replace(/-/g, ''); }
+function now() { return Date.now(); }
+
+// Manually discovered Whop pages (confirmed URLs).
+// Goal: add high-confidence brands/communities, then sync via /api/whop/sync.
+// Notes:
+// - Prefer /discover/<company>/ URLs where possible.
+// - Skip anything disabled/404.
+const urls = [
+  // TikTok Shop / short-form creator economy
+  'https://whop.com/discover/ttsinsiders/',
+  'https://whop.com/discover/how-to-tiktok-shop/',
+  'https://whop.com/discover/multiply-group/',
+
+  // Creator growth
+  'https://whop.com/discover/instagram-mastery/',
+
+  // AI / automation
+  'https://whop.com/discover/automateit/',
+
+  // Trading / investing
+  'https://whop.com/discover/willtrades/',
+
+  // Reviews / UGC-ish
+  'https://whop.com/discover/reviewers-central/',
+];
+
+function handleFromWhopUrl(u) {
+  const clean = u.split('?')[0].replace(/\/+$/, '');
+  const url = new URL(clean);
+  const parts = url.pathname.split('/').filter(Boolean);
+
+  // /discover/<company>/<offer>
+  if (parts[0] === 'discover' && parts[1]) return parts[1].toLowerCase();
+
+  // /marketplace/<company>
+  if (parts[0] === 'marketplace' && parts[1]) return parts[1].toLowerCase();
+
+  // /joined/<company>
+  if (parts[0] === 'joined' && parts[1]) return parts[1].toLowerCase();
+
+  // /<company>/...
+  return (parts[0] || 'whop-item').toLowerCase();
+}
+
+let inserted = 0;
+let skipped = 0;
+const insertedHandles = [];
+
+for (const u of urls) {
+  const handle = handleFromWhopUrl(u);
+  const existing = db.prepare('SELECT id FROM gurus WHERE handle = ?').get(handle);
+  if (existing) {
+    skipped++;
+    continue;
+  }
+
+  const id = cuid();
+  const ts = now();
+  const name = handle.replace(/-/g, ' ');
+
+  db.prepare(
+    `INSERT INTO gurus (
+      id, name, handle, category, bio, whop_url, whop_synced_at,
+      creator_name, brand_name,
+      created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).run(
+    id,
+    name,
+    handle,
+    'Whop',
+    null,
+    u,
+    null,
+    null,
+    name,
+    ts,
+    ts
+  );
+
+  inserted++;
+  insertedHandles.push(handle);
+  console.log('Inserted', handle, u);
+}
+
+console.log(JSON.stringify({ inserted, skipped, insertedHandles }, null, 2));
