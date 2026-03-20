@@ -32,18 +32,15 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
             <div className="truncate text-lg font-semibold text-white">{displayName}</div>
             <div className="truncate text-xs text-white/80">by {c.guru_name}</div>
           </div>
-          <div className="shrink-0 rounded-2xl bg-white/92 px-3 py-2 text-neutral-900 shadow-sm backdrop-blur">
-            <div
-              title="Whop rating: stars + review count sourced from public Whop pages."
-              className="flex items-baseline justify-between rounded-lg bg-emerald-500/15 px-2 py-1"
-            >
-              <div className="text-[11px] font-semibold tracking-wide text-emerald-800">WHOP</div>
-              <div className="text-right text-sm font-semibold text-emerald-900">
+          <div className="shrink-0 rounded-xl bg-black/60 px-2.5 py-1.5 shadow-sm backdrop-blur-sm">
+            <div className="flex items-baseline gap-1.5">
+              <div className="text-[10px] font-bold tracking-wider text-emerald-400">WHOP</div>
+              <div className="text-sm font-bold text-white">
                 {c.whop_rating != null ? c.whop_rating.toFixed(1) : '—'}
-                {c.whop_reviews_count != null ? (
-                  <span className="ml-1 text-[11px] font-medium text-emerald-800">({c.whop_reviews_count.toLocaleString()})</span>
-                ) : null}
               </div>
+              {c.whop_reviews_count != null ? (
+                <div className="text-[10px] text-white/70">({c.whop_reviews_count.toLocaleString()})</div>
+              ) : null}
             </div>
           </div>
         </div>

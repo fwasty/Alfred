@@ -78,7 +78,7 @@ export default async function Home({
     <Shell>
       <div className="grid gap-10">
         {/* RMP-style hero (slideshow is the background, but actually visible) */}
-        <section className="relative -mx-4 min-h-[56vh] rounded-2xl border border-black/10 shadow-[0_1px_0_rgba(0,0,0,0.04)] overflow-hidden sm:mx-0 sm:min-h-[64vh] sm:rounded-3xl">
+        <section className="relative -mx-4 min-h-[56vh] rounded-2xl border border-[color:var(--border)] shadow-[0_1px_0_rgba(0,0,0,0.04)] overflow-hidden sm:mx-0 sm:min-h-[64vh] sm:rounded-3xl">
           <HeroRotatingBackdrop images={heroImages} />
 
           {/* content */}
@@ -179,18 +179,18 @@ export default async function Home({
 
 
                 {/* keep search in the hero */}
-                <div className="mt-5 rounded-3xl border border-black/10 bg-white/55 p-3 shadow-sm backdrop-blur-sm sm:mt-6 sm:bg-white/75 sm:p-4 sm:backdrop-blur">
+                <div className="mt-5 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-3 shadow-sm backdrop-blur-sm sm:mt-6 sm:bg-[color:var(--surface)] sm:p-4 sm:backdrop-blur">
                   <SearchHero items={[]} />
 
                   {/* Keep hero background visible on mobile; the floating + button already exists */}
-                  <div className="mt-3 text-xs text-neutral-700 sm:hidden">
+                  <div className="mt-3 text-xs text-[color:var(--muted)] sm:hidden">
                     Don’t see your course?{' '}
                     <Link className="font-medium underline-offset-4 hover:underline" href="/list-your-course">
                       Add it →
                     </Link>
                   </div>
 
-                  <div className="mt-4 hidden rounded-2xl border border-black/10 bg-white/70 p-4 text-sm text-neutral-700 sm:block">
+                  <div className="mt-4 hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-sm text-[color:var(--muted)] sm:block">
                     <div className="font-semibold">Don’t see your course?</div>
                     <div className="mt-1">
                       Paste your Whop link → we’ll verify it → it shows up in Browse/Search.
@@ -218,21 +218,21 @@ export default async function Home({
               <div className="mt-1 text-xs text-[color:var(--muted)]">High-review offers people actually buy.</div>
             </div>
             <div className="flex items-center gap-3">
-              <Link className="text-xs underline-offset-4 hover:underline text-neutral-600" href="/leaderboard">
+              <Link className="text-xs underline-offset-4 hover:underline text-[color:var(--muted)]" href="/leaderboard">
                 Full leaderboard →
               </Link>
-              <Link className="text-xs underline-offset-4 hover:underline text-neutral-600" href="/list-your-course">
+              <Link className="text-xs underline-offset-4 hover:underline text-[color:var(--muted)]" href="/list-your-course">
                 Add your course
               </Link>
             </div>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-black/10 bg-white/60 px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {trending.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
               ))}
-              {!trending.length ? <div className="text-sm text-neutral-600">No courses imported yet.</div> : null}
+              {!trending.length ? <div className="text-sm text-[color:var(--muted)]">No courses imported yet.</div> : null}
             </CourseCarousel>
           </div>
 
@@ -243,12 +243,12 @@ export default async function Home({
             </div>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-black/10 bg-white/60 px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topCourses.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
               ))}
-              {!topCourses.length ? <div className="text-sm text-neutral-600">No courses imported yet.</div> : null}
+              {!topCourses.length ? <div className="text-sm text-[color:var(--muted)]">No courses imported yet.</div> : null}
             </CourseCarousel>
           </div>
 
@@ -262,12 +262,12 @@ export default async function Home({
             </Link>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-black/10 bg-white/60 px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topFree.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
               ))}
-              {!topFree.length ? <div className="text-sm text-neutral-600">No free offers imported yet.</div> : null}
+              {!topFree.length ? <div className="text-sm text-[color:var(--muted)]">No free offers imported yet.</div> : null}
             </CourseCarousel>
           </div>
 
@@ -281,12 +281,12 @@ export default async function Home({
             </Link>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-black/10 bg-white/60 px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topClipping.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
               ))}
-              {!topClipping.length ? <div className="text-sm text-neutral-600">No clipping offers imported yet.</div> : null}
+              {!topClipping.length ? <div className="text-sm text-[color:var(--muted)]">No clipping offers imported yet.</div> : null}
             </CourseCarousel>
           </div>
         </section>
@@ -294,15 +294,15 @@ export default async function Home({
         <section className="grid gap-4 md:grid-cols-3">
           <Card>
             <div className="text-sm font-semibold">WHOP rating</div>
-            <div className="mt-1 text-sm text-neutral-700">Baseline signal from the Whop course listing (stars + count).</div>
+            <div className="mt-1 text-sm text-[color:var(--muted)]">Baseline signal from the Whop course listing (stars + count).</div>
           </Card>
           <Card>
             <div className="text-sm font-semibold">GURU rating</div>
-            <div className="mt-1 text-sm text-neutral-700">Reviews left on this site (account required to post).</div>
+            <div className="mt-1 text-sm text-[color:var(--muted)]">Reviews left on this site (account required to post).</div>
           </Card>
           <Card>
             <div className="text-sm font-semibold">Verified badge</div>
-            <div className="mt-1 text-sm text-neutral-700">Creators can claim/verify profiles (shows they’re present).</div>
+            <div className="mt-1 text-sm text-[color:var(--muted)]">Creators can claim/verify profiles (shows they’re present).</div>
           </Card>
         </section>
       </div>

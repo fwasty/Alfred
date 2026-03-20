@@ -32,8 +32,8 @@ export async function Shell({
       <div className={cn(lockScroll ? 'flex h-dvh flex-col overflow-hidden' : 'min-h-dvh')}>
         <header
           className={cn(
-            'sticky top-0 z-20 border-b backdrop-blur',
-            'border-[color:var(--border)] bg-[color:var(--surface)]'
+            'sticky top-0 z-40 border-b backdrop-blur-xl',
+            'border-[color:var(--border)] bg-[color:var(--nav-bg)]'
           )}
         >
           <div className="mx-auto flex w-[min(1720px,calc(100vw-24px))] flex-col gap-2 px-4 py-3 sm:w-[min(1720px,calc(100vw-48px))] sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6">
@@ -102,8 +102,8 @@ export async function Shell({
             'fixed bottom-4 left-4 z-30',
             'grid size-14 place-items-center rounded-full border border-[color:var(--border)]',
             'sm:bottom-5 sm:left-5',
-            'bg-white/80 shadow-md backdrop-blur transition',
-            'hover:scale-[1.02] hover:bg-white'
+            'bg-[color:var(--surface)] shadow-md backdrop-blur transition',
+            'hover:scale-[1.02] hover:opacity-90'
           )}
         >
           <img src="/brand/gs-logo-tab.png" alt="Guru Scan" className="h-8 w-8" />
