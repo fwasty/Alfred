@@ -17,7 +17,7 @@ export default async function Home({
   const sp = (await searchParams) || {}
   const hero = (Array.isArray(sp.hero) ? sp.hero[0] : sp.hero) || 'center'
 
-  // Keep each row as a tight “bank” (about 5) so it feels curated and scrollable.
+  // Keep each row as a tight "bank" (about 5) so it feels curated and scrollable.
   const trending = listTrendingCourses(10)
   const topCourses = listTopCoursesWeek(5)
   const topFree = listTopFreeCourses(5)
@@ -97,14 +97,14 @@ export default async function Home({
                       Rate creators & courses.
                     </h1>
                     <p className="mt-2 max-w-2xl text-pretty text-[15px] text-white/85 drop-shadow-[0_1px_12px_rgba(0,0,0,0.55)]">
-                      Search a creator (or course) and see offers, pricing, and reviews—fast.
+                      Search a creator (or course) and see offers, pricing, and reviews-fast.
                     </p>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                       <Link href="/gurus">
                         <Button>Browse</Button>
                       </Link>
                       <Link href="/list-your-course">
-                        <Button variant="ghost">Don’t see your course? Add it</Button>
+                        <Button variant="ghost">Don't see your course? Add it</Button>
                       </Link>
                     </div>
                   </>
@@ -119,14 +119,14 @@ export default async function Home({
                       Rate creators & courses.
                     </h1>
                     <p className="mt-2 max-w-2xl text-pretty text-[15px] text-white/85">
-                      Search a creator (or course) and see offers, pricing, and reviews—fast.
+                      Search a creator (or course) and see offers, pricing, and reviews-fast.
                     </p>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                       <Link href="/gurus">
                         <Button>Browse</Button>
                       </Link>
                       <Link href="/list-your-course">
-                        <Button variant="ghost">Don’t see your course? Add it</Button>
+                        <Button variant="ghost">Don't see your course? Add it</Button>
                       </Link>
                     </div>
                   </div>
@@ -141,14 +141,14 @@ export default async function Home({
                       Rate creators & courses.
                     </h1>
                     <p className="mt-2 mx-auto max-w-2xl text-pretty text-[15px] text-white/85 drop-shadow-[0_1px_12px_rgba(0,0,0,0.55)]">
-                      Search a creator (or course) and see offers, pricing, and reviews—fast.
+                      Search a creator (or course) and see offers, pricing, and reviews-fast.
                     </p>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
                       <Link href="/gurus">
                         <Button>Browse</Button>
                       </Link>
                       <Link href="/list-your-course">
-                        <Button variant="ghost">Don’t see your course? Add it</Button>
+                        <Button variant="ghost">Don't see your course? Add it</Button>
                       </Link>
                     </div>
                   </div>
@@ -164,14 +164,14 @@ export default async function Home({
                       Rate creators & courses.
                     </h1>
                     <p className="mt-2 max-w-2xl text-pretty text-[15px] text-white/85 drop-shadow-[0_1px_12px_rgba(0,0,0,0.6)]">
-                      Search a creator (or course) and see offers, pricing, and reviews—fast.
+                      Search a creator (or course) and see offers, pricing, and reviews-fast.
                     </p>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                       <Link href="/gurus">
                         <Button>Browse</Button>
                       </Link>
                       <Link href="/list-your-course">
-                        <Button variant="ghost">Don’t see your course? Add it</Button>
+                        <Button variant="ghost">Don't see your course? Add it</Button>
                       </Link>
                     </div>
                   </>
@@ -184,16 +184,16 @@ export default async function Home({
 
                   {/* Keep hero background visible on mobile; the floating + button already exists */}
                   <div className="mt-3 text-xs text-[color:var(--muted)] sm:hidden">
-                    Don’t see your course?{' '}
+                    Don't see your course?{' '}
                     <Link className="font-medium underline-offset-4 hover:underline" href="/list-your-course">
                       Add it →
                     </Link>
                   </div>
 
                   <div className="mt-4 hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-sm text-[color:var(--muted)] sm:block">
-                    <div className="font-semibold">Don’t see your course?</div>
+                    <div className="font-semibold">Don't see your course?</div>
                     <div className="mt-1">
-                      Paste your Whop link → we’ll verify it → it shows up in Browse/Search.
+                      Paste your Whop link → we'll verify it → it shows up in Browse/Search.
                       <Link className="ml-2 font-medium underline-offset-4 hover:underline" href="/list-your-course">
                         Add your course →
                       </Link>
@@ -255,7 +255,7 @@ export default async function Home({
           <div className="flex items-end justify-between gap-4">
             <div>
               <div className="text-sm font-semibold tracking-tight text-[color:var(--text)]">🆓 Top free offers</div>
-              <div className="mt-1 text-xs text-[color:var(--muted)]">Anything marked “FREE”.</div>
+              <div className="mt-1 text-xs text-[color:var(--muted)]">Anything marked "FREE".</div>
             </div>
             <Link className="text-xs underline-offset-4 hover:underline text-[color:var(--muted)]" href="/leaderboard?tab=free">
               Top free leaderboard →
@@ -292,18 +292,27 @@ export default async function Home({
         </section>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <Card>
-            <div className="text-sm font-semibold">WHOP rating</div>
-            <div className="mt-1 text-sm text-[color:var(--muted)]">Baseline signal from the Whop course listing (stars + count).</div>
-          </Card>
-          <Card>
-            <div className="text-sm font-semibold">GURU rating</div>
-            <div className="mt-1 text-sm text-[color:var(--muted)]">Reviews left on this site (account required to post).</div>
-          </Card>
-          <Card>
-            <div className="text-sm font-semibold">Verified badge</div>
-            <div className="mt-1 text-sm text-[color:var(--muted)]">Creators can claim/verify profiles (shows they’re present).</div>
-          </Card>
+          <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5">
+            <div className="flex items-center gap-2">
+              <div className="grid size-8 place-items-center rounded-lg bg-emerald-500/15 text-sm">⭐</div>
+              <div className="text-sm font-semibold text-[color:var(--text)]">WHOP rating</div>
+            </div>
+            <div className="mt-2 text-sm text-[color:var(--muted)]">Baseline signal sourced from public Whop course listings — stars + review count.</div>
+          </div>
+          <div className="rounded-2xl border border-violet-500/20 bg-violet-500/5 p-5">
+            <div className="flex items-center gap-2">
+              <div className="grid size-8 place-items-center rounded-lg bg-violet-500/15 text-sm">💬</div>
+              <div className="text-sm font-semibold text-[color:var(--text)]">GURU rating</div>
+            </div>
+            <div className="mt-2 text-sm text-[color:var(--muted)]">Honest, independent reviews left by real users on Guru Scan. The rating that matters.</div>
+          </div>
+          <div className="rounded-2xl border border-sky-500/20 bg-sky-500/5 p-5">
+            <div className="flex items-center gap-2">
+              <div className="grid size-8 place-items-center rounded-lg bg-sky-500/15 text-sm">✅</div>
+              <div className="text-sm font-semibold text-[color:var(--text)]">Verified badge</div>
+            </div>
+            <div className="mt-2 text-sm text-[color:var(--muted)]">Creators can claim and verify their profile — shows they're present and engaged.</div>
+          </div>
         </section>
       </div>
     </Shell>

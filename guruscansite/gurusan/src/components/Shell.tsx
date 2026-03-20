@@ -32,7 +32,7 @@ export async function Shell({
       <div className={cn(lockScroll ? 'flex h-dvh flex-col overflow-hidden' : 'min-h-dvh')}>
         <header
           className={cn(
-            'sticky top-0 z-40 backdrop-blur-xl',
+            'sticky top-0 z-50 backdrop-blur-xl backdrop-saturate-150',
             'bg-[color:var(--nav-bg)]'
           )}
           style={{ borderBottom: '1px solid var(--border)' }}

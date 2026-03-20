@@ -6,10 +6,10 @@ import { listTopFreeCourses } from '@/lib/free'
 import { pickImageUrl } from '@/lib/image'
 
 function ratingColor(rating: number | null) {
-  if (rating == null) return { bg: 'bg-neutral-200', fg: 'text-neutral-900' }
+  if (rating == null) return { bg: 'bg-neutral-500/20', fg: 'text-[color:var(--muted)]' }
   if (rating >= 4.5) return { bg: 'bg-emerald-500', fg: 'text-white' }
-  if (rating >= 3.5) return { bg: 'bg-lime-400', fg: 'text-neutral-900' }
-  if (rating >= 2.5) return { bg: 'bg-amber-400', fg: 'text-neutral-900' }
+  if (rating >= 3.5) return { bg: 'bg-lime-500', fg: 'text-white' }
+  if (rating >= 2.5) return { bg: 'bg-amber-500', fg: 'text-white' }
   return { bg: 'bg-rose-500', fg: 'text-white' }
 }
 
@@ -41,34 +41,29 @@ function Row({
 }) {
   const medal = medalFor(n)
   const rc = ratingColor(whopRating)
-
   const top3 = n <= 3
 
   const podiumClass = (() => {
-    // pastel glass theme highlights
     if (n === 1)
-      return 'bg-gradient-to-r from-amber-200/80 via-rose-200/60 to-sky-200/65 ring-4 ring-amber-400/60 shadow-lg'
+      return 'bg-amber-500/10 ring-1 ring-amber-500/30 shadow-sm'
     if (n === 2)
-      return 'bg-gradient-to-r from-slate-200/85 via-cyan-200/65 to-violet-200/65 ring-4 ring-slate-400/70 shadow-lg'
+      return 'bg-slate-500/8 ring-1 ring-slate-400/25 shadow-sm'
     if (n === 3)
-      return 'bg-gradient-to-r from-orange-200/75 via-pink-200/55 to-indigo-200/60 ring-4 ring-orange-400/55 shadow-lg'
+      return 'bg-orange-500/8 ring-1 ring-orange-400/20 shadow-sm'
     return null
   })()
 
-  const rowClass = podiumClass ? `${podiumClass} border-l-4 ${n === 1 ? 'border-l-amber-400/80' : n === 2 ? 'border-l-slate-400/80' : 'border-l-orange-400/80'}` : 'hover:bg-black/5'
-
-  const subClass = top3 ? 'text-neutral-700' : 'text-neutral-600'
-  const nClass = top3 ? 'text-neutral-700' : 'text-neutral-600'
+  const rowClass = podiumClass || 'hover:bg-[color:var(--surface-2)]'
 
   return (
     <Link
       href={href}
-      className={`grid grid-cols-[40px_36px_1fr_96px] items-center gap-3 rounded-xl px-3 py-2 backdrop-blur sm:grid-cols-[48px_44px_1fr_130px] sm:gap-4 ${rowClass}`}
+      className={`grid grid-cols-[40px_36px_1fr_96px] items-center gap-3 rounded-xl px-3 py-2.5 transition sm:grid-cols-[48px_44px_1fr_130px] sm:gap-4 ${rowClass}`}
     >
       <div className="flex items-center gap-1">
-        <div className={`text-xs font-semibold w-6 ${nClass}`}>{n}</div>
+        <div className="text-xs font-semibold w-6 text-[color:var(--muted)]">{n}</div>
         <div
-          className={`grid size-6 place-items-center rounded-full border border-black/10 bg-white/70 text-sm ${top3 ? 'shadow-sm' : ''}`}
+          className={`grid size-6 place-items-center rounded-full text-sm ${top3 ? '' : ''}`}
           aria-hidden
         >
           {medal}
@@ -78,20 +73,20 @@ function Row({
       <img
         src={pickImageUrl({ primary: imageUrl, seed: imageSeed || name })}
         alt=""
-        className="size-9 rounded-xl border border-black/10 bg-white object-cover sm:size-11"
+        className="size-9 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-2)] object-cover sm:size-11"
         loading="lazy"
       />
 
       <div className="min-w-0">
-        <div className="truncate text-sm font-semibold">{name}</div>
-        <div className={`truncate text-xs ${subClass}`}>{sub}</div>
+        <div className="truncate text-sm font-semibold text-[color:var(--text)]">{name}</div>
+        <div className="truncate text-xs text-[color:var(--muted)]">{sub}</div>
       </div>
 
       <div className="justify-self-end text-right">
         <div className={`inline-flex items-center justify-center rounded-lg px-2.5 py-1 text-sm font-semibold ${rc.bg} ${rc.fg}`}>
           {whopRating != null ? whopRating.toFixed(2) : '—'}
         </div>
-        <div className="mt-1 text-[11px] text-neutral-600">
+        <div className="mt-1 text-[11px] text-[color:var(--muted-2)]">
           {whopReviews != null ? `${whopReviews.toLocaleString()} reviews` : 'no data'}
         </div>
       </div>
@@ -134,18 +129,18 @@ export default async function LeaderboardPage({
     <Shell>
       <div className="grid gap-10">
         <div>
-          <h1 className="text-4xl font-semibold tracking-tight">Leaderboard</h1>
-          <p className="mt-2 text-sm text-neutral-600">
-            Best of the best. First: top creators (gurus). Then: top courses. Split into General vs Clipping.
+          <h1 className="text-4xl font-semibold tracking-tight text-[color:var(--text)]">Leaderboard</h1>
+          <p className="mt-2 text-sm text-[color:var(--muted)]">
+            Best of the best. Top creators, courses, and clipping offers ranked by reviews.
           </p>
         </div>
 
         <section className="grid gap-3">
           <div className="flex items-end justify-between">
-            <h2 className="text-xl font-semibold">Gurus — Top 25</h2>
-            <div className="text-xs text-neutral-700">Overall (combined)</div>
+            <h2 className="text-xl font-semibold text-[color:var(--text)]">🏆 Gurus — Top 25</h2>
+            <div className="text-xs text-[color:var(--muted)]">Overall (combined)</div>
           </div>
-          <div className="rounded-2xl border border-black/10 bg-white/70 p-2">
+          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-2">
             {topGurusGeneral.map((g, i) => (
               <Row
                 key={g.guru_id}
@@ -159,16 +154,16 @@ export default async function LeaderboardPage({
                 imageSeed={g.guru_handle}
               />
             ))}
-            {!topGurusGeneral.length ? <div className="p-4 text-sm text-neutral-600">No gurus yet.</div> : null}
+            {!topGurusGeneral.length ? <div className="p-4 text-sm text-[color:var(--muted)]">No gurus yet.</div> : null}
           </div>
         </section>
 
         <section className="grid gap-3">
           <div className="flex items-end justify-between">
-            <h2 className="text-xl font-semibold">Courses — General (Top 25)</h2>
-            <div className="text-xs text-neutral-700">Excludes clips/clipping/content rewards</div>
+            <h2 className="text-xl font-semibold text-[color:var(--text)]">📚 Courses — General (Top 25)</h2>
+            <div className="text-xs text-[color:var(--muted)]">Excludes clips/clipping/content rewards</div>
           </div>
-          <div className="rounded-2xl border border-black/10 bg-white/70 p-2">
+          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-2">
             {topCoursesGeneral.map((c, i) => (
               <Row
                 key={c.id}
@@ -182,16 +177,16 @@ export default async function LeaderboardPage({
                 imageSeed={c.guru_handle}
               />
             ))}
-            {!topCoursesGeneral.length ? <div className="p-4 text-sm text-neutral-600">No courses yet.</div> : null}
+            {!topCoursesGeneral.length ? <div className="p-4 text-sm text-[color:var(--muted)]">No courses yet.</div> : null}
           </div>
         </section>
 
         <section className="grid gap-3">
           <div className="flex items-end justify-between">
-            <h2 className="text-xl font-semibold">Courses — Clipping (Top 25)</h2>
-            <div className="text-xs text-neutral-700">Clips/clipping/content rewards</div>
+            <h2 className="text-xl font-semibold text-[color:var(--text)]">✂️ Courses — Clipping (Top 25)</h2>
+            <div className="text-xs text-[color:var(--muted)]">Clips/clipping/content rewards</div>
           </div>
-          <div className="rounded-2xl border border-black/10 bg-white/70 p-2">
+          <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-2">
             {topCoursesClipping.map((c, i) => (
               <Row
                 key={c.id}
@@ -205,7 +200,7 @@ export default async function LeaderboardPage({
                 imageSeed={c.guru_handle}
               />
             ))}
-            {!topCoursesClipping.length ? <div className="p-4 text-sm text-neutral-600">No clipping offers yet.</div> : null}
+            {!topCoursesClipping.length ? <div className="p-4 text-sm text-[color:var(--muted)]">No clipping offers yet.</div> : null}
           </div>
         </section>
       </div>
