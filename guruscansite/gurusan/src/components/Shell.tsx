@@ -111,35 +111,11 @@ export async function Shell({
         </Link>
 
         {hideFooter ? null : (
-          <footer className="border-t border-[color:var(--border)] mt-8">
-            <div className="mx-auto w-[min(1720px,calc(100vw-24px))] px-4 py-8 sm:w-[min(1720px,calc(100vw-48px))] sm:px-6 sm:py-12">
-              <div className="grid gap-8 sm:grid-cols-3">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <img src="/brand/gs-logo-transparent.png" alt="Guru Scan" className="h-7 w-7" />
-                    <span className="font-semibold text-[color:var(--text)]">Guru Scan</span>
-                  </div>
-                  <p className="mt-2 text-xs text-[color:var(--muted)] leading-relaxed max-w-xs">
-                    Independent ratings and reviews for online gurus and courses. Data sourced from public Whop pages.
-                  </p>
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-[color:var(--text)] uppercase tracking-wider">Navigate</div>
-                  <div className="mt-3 grid gap-1.5 text-xs text-[color:var(--muted)]">
-                    <Link href="/gurus" className="hover:text-[color:var(--text)] transition">Browse Gurus</Link>
-                    <Link href="/leaderboard" className="hover:text-[color:var(--text)] transition">Leaderboard</Link>
-                    <Link href="/list-your-course" className="hover:text-[color:var(--text)] transition">List Your Course</Link>
-                    <Link href="/about" className="hover:text-[color:var(--text)] transition">About</Link>
-                  </div>
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-[color:var(--text)] uppercase tracking-wider">Legal</div>
-                  <div className="mt-3 grid gap-1.5 text-xs text-[color:var(--muted)]">
-                    <span>Not affiliated with Whop</span>
-                    <span>Claims & appeals (planned)</span>
-                    <span>© {new Date().getFullYear()} Guru Scan</span>
-                  </div>
-                </div>
+          <footer className="border-t border-[color:var(--border)]">
+            <div className="mx-auto flex w-[min(1720px,calc(100vw-24px))] items-center justify-between px-4 py-6 text-xs text-[color:var(--muted)] sm:w-[min(1720px,calc(100vw-48px))] sm:px-6 sm:py-8">
+              <div>© {new Date().getFullYear()} Guru Scan</div>
+              <div className="text-right">
+                Data sourced from public Whop pages • Not affiliated • Claims/appeals (planned)
               </div>
             </div>
           </footer>
