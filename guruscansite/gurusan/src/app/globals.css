@@ -110,11 +110,16 @@
   }
 }
 
-html,
+html {
+  width: 100%;
+  max-width: 100vw;
+  overscroll-behavior-x: none;
+}
+
 body {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden; /* widest support */
+  max-width: 100vw;
+  overflow-x: clip; /* prevents horizontal scroll without breaking sticky */
   overscroll-behavior-x: none;
 }
 

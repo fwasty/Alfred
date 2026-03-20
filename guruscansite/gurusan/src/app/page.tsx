@@ -184,32 +184,9 @@ export default async function Home({
                 )}
 
 
-                {/* keep search in the hero */}
-                <div className="mt-5 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-3 shadow-sm backdrop-blur-sm sm:mt-6 sm:bg-[color:var(--surface)] sm:p-4 sm:backdrop-blur">
+                {/* Compact search in hero */}
+                <div className="mt-5 sm:mt-6">
                   <SearchHero items={[]} />
-
-                  {/* Keep hero background visible on mobile; the floating + button already exists */}
-                  <div className="mt-3 text-xs text-[color:var(--muted)] sm:hidden">
-                    Don't see your course?{' '}
-                    <Link className="font-medium underline-offset-4 hover:underline" href="/list-your-course">
-                      Add it →
-                    </Link>
-                  </div>
-
-                  <div className="mt-4 hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-sm text-[color:var(--muted)] sm:block">
-                    <div className="font-semibold">Don't see your course?</div>
-                    <div className="mt-1">
-                      Paste your Whop link → we'll verify it → it shows up in Browse/Search.
-                      <Link className="ml-2 font-medium underline-offset-4 hover:underline" href="/list-your-course">
-                        Add your course →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-
-                {/* scroll cue */}
-                <div className="mt-4 text-xs text-[color:var(--muted)] sm:mt-6">
-                  Scroll for the best courses ↓
                 </div>
               </div>
             </div>
