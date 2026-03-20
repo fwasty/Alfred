@@ -32,23 +32,25 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
           </div>
 
           {/* Rating badges */}
-          <div className="shrink-0 flex flex-col gap-1">
-            <div className="rounded-lg bg-white/90 px-2 py-1 shadow-sm backdrop-blur">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-semibold tracking-wide text-emerald-700">WHOP</span>
-                <span className="text-sm font-bold text-emerald-900">
-                  {c.whop_rating != null ? c.whop_rating.toFixed(1) : '—'}
-                </span>
-                {c.whop_reviews_count != null ? (
-                  <span className="text-[10px] text-emerald-700/70">({c.whop_reviews_count.toLocaleString()})</span>
-                ) : null}
+          <div className="shrink-0 flex flex-col gap-1.5">
+            {/* Whop badge — green */}
+            <div className="flex items-center gap-2 rounded-xl bg-emerald-600 px-2.5 py-1.5 shadow-md">
+              <div className="text-lg font-bold text-white leading-none">
+                {c.whop_rating != null ? c.whop_rating.toFixed(1) : '—'}
+              </div>
+              <div className="leading-tight">
+                <div className="text-[11px] font-bold text-white tracking-wide">WHOP</div>
+                <div className="text-[10px] text-emerald-100">
+                  {c.whop_reviews_count != null ? `${c.whop_reviews_count.toLocaleString()} reviews` : 'no data'}
+                </div>
               </div>
             </div>
-            <div className="rounded-lg bg-white/90 px-2 py-1 shadow-sm backdrop-blur">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-semibold tracking-wide text-violet-700">GURU</span>
-                <span className="text-sm font-bold text-violet-900">—</span>
-                <span className="text-[10px] text-violet-600/70">soon</span>
+            {/* Guru badge — light purple tint */}
+            <div className="flex items-center gap-2 rounded-xl bg-violet-100 px-2.5 py-1.5 shadow-md">
+              <div className="text-lg font-bold text-violet-400 leading-none">—</div>
+              <div className="leading-tight">
+                <div className="text-[11px] font-bold text-violet-800 tracking-wide">GURU</div>
+                <div className="text-[10px] text-violet-500">no data</div>
               </div>
             </div>
           </div>
