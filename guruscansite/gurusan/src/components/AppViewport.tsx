@@ -36,7 +36,7 @@ export function AppViewport({
     <div
       ref={ref}
       style={style}
-      className={cn('w-full min-h-dvh overflow-x-hidden', className)}
+      className={cn('w-full min-h-dvh', className)}
     >
       {children}
     </div>

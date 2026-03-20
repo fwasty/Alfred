@@ -16,17 +16,20 @@
   --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-/* Theme 1: Paper — clean professional with subtle depth */
+/* Theme 1: Paper — modern professional with depth */
 :root[data-theme='paper'] {
-  --page-bg: linear-gradient(165deg, #f8f9fc 0%, #ffffff 35%, #f5f7fa 100%);
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-2: rgba(245, 247, 250, 0.88);
-  --border: rgba(0, 0, 0, 0.08);
-  --text: #111827;
-  --muted: rgba(17, 24, 39, 0.65);
-  --muted-2: rgba(17, 24, 39, 0.45);
-  --accent: #111827;
-  --nav-bg: rgba(255, 255, 255, 0.78);
+  --page-bg: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.12), transparent),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(16, 185, 129, 0.06), transparent),
+    linear-gradient(to bottom, #fafbff, #ffffff 40%, #f7f8fc);
+  --surface: rgba(255, 255, 255, 0.95);
+  --surface-2: rgba(245, 247, 252, 0.90);
+  --border: rgba(0, 0, 0, 0.07);
+  --text: #0f172a;
+  --muted: rgba(15, 23, 42, 0.60);
+  --muted-2: rgba(15, 23, 42, 0.40);
+  --accent: #4f46e5;
+  --nav-bg: rgba(255, 255, 255, 0.80);
   --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
   --card-hover-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
   --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

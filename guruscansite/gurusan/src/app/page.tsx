@@ -8,6 +8,7 @@ import { TopCourseCard } from '@/components/TopCourseCard'
 import { CourseCarousel } from '@/components/CourseCarousel'
 import { HeroRotatingBackdrop } from '@/components/HeroRotatingBackdrop'
 import { fetchPlaylistVideos } from '@/lib/youtube'
+import { db } from '@/lib/sqlite'
 
 export default async function Home({
   searchParams,
@@ -22,6 +23,11 @@ export default async function Home({
   const topCourses = listTopCoursesWeek(5)
   const topFree = listTopFreeCourses(5)
   const topClipping = listTopClippingCoursesWeek(5)
+
+  // Stats for social proof
+  const guruCount = (db.prepare("SELECT COUNT(*) as c FROM gurus WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
+  const courseCount = (db.prepare("SELECT COUNT(*) as c FROM courses WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
+  const categoryCount = (db.prepare("SELECT COUNT(DISTINCT category) as c FROM gurus WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
 
   const whopFeaturedPlaylistId = 'PLNAr8MH2RWDjxDDDYTlFc7P5wyZwSmN9J'
   const whopVideos = await fetchPlaylistVideos(whopFeaturedPlaylistId, 12)
@@ -207,6 +213,22 @@ export default async function Home({
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Social proof stats */}
+        <section className="grid grid-cols-3 gap-3 sm:gap-4">
+          <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-center">
+            <div className="text-2xl sm:text-3xl font-bold text-[color:var(--text)]">{guruCount.toLocaleString()}</div>
+            <div className="mt-1 text-xs text-[color:var(--muted)]">Gurus rated</div>
+          </div>
+          <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-center">
+            <div className="text-2xl sm:text-3xl font-bold text-[color:var(--text)]">{courseCount.toLocaleString()}</div>
+            <div className="mt-1 text-xs text-[color:var(--muted)]">Courses tracked</div>
+          </div>
+          <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-center">
+            <div className="text-2xl sm:text-3xl font-bold text-[color:var(--text)]">{categoryCount}</div>
+            <div className="mt-1 text-xs text-[color:var(--muted)]">Categories</div>
           </div>
         </section>
 
