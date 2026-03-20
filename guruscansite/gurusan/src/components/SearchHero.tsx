@@ -27,8 +27,8 @@ export function SearchHero({ items }: { items: Item[] }) {
 
   return (
     <div className="mt-7">
-      <div className="text-xs font-medium text-neutral-700">Search creators</div>
-      <div className="mt-2 rounded-2xl border border-black/10 bg-white p-2 shadow-sm">
+      <div className="text-xs font-medium text-[color:var(--muted)]">Search creators</div>
+      <div className="mt-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-2 shadow-sm">
         <div className="flex items-center gap-2 px-2 py-1.5">
           <div className="text-[color:var(--muted-2)]">🔍</div>
           <input
@@ -39,22 +39,22 @@ export function SearchHero({ items }: { items: Item[] }) {
           />
         </div>
         {results.length ? (
-          <div className="mt-1 overflow-hidden rounded-xl border border-black/5">
+          <div className="mt-1 overflow-hidden rounded-xl border border-[color:var(--border)]">
             {results.map((r) => (
               <Link
                 key={r.key}
                 href={r.href}
-                className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-black/5"
+                className="flex items-center gap-3 px-4 py-2 text-sm text-[color:var(--text)] hover:bg-[color:var(--surface-2)] transition"
               >
                 <img
                   src={r.image_url || `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(r.key)}`}
                   alt={r.name}
-                  className="size-7 rounded-lg border border-black/10 bg-white object-cover"
+                  className="size-7 rounded-lg border border-[color:var(--border)] bg-[color:var(--surface-2)] object-cover"
                 />
                 <div className="min-w-0">
                   <div className="truncate">
                     <span className="font-medium">{r.name}</span>
-                    {r.sub ? <span className="ml-2 text-xs text-neutral-600">{r.sub}</span> : null}
+                    {r.sub ? <span className="ml-2 text-xs text-[color:var(--muted)]">{r.sub}</span> : null}
                   </div>
                 </div>
               </Link>
@@ -65,4 +65,3 @@ export function SearchHero({ items }: { items: Item[] }) {
     </div>
   )
 }
-

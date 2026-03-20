@@ -32,15 +32,16 @@ export async function Shell({
       <div className={cn(lockScroll ? 'flex h-dvh flex-col overflow-hidden' : 'min-h-dvh')}>
         <header
           className={cn(
-            'sticky top-0 z-40 border-b backdrop-blur-xl',
-            'border-[color:var(--border)] bg-[color:var(--nav-bg)]'
+            'sticky top-0 z-40 backdrop-blur-xl',
+            'bg-[color:var(--nav-bg)]'
           )}
+          style={{ borderBottom: '1px solid var(--border)' }}
         >
           <div className="mx-auto flex w-[min(1720px,calc(100vw-24px))] flex-col gap-2 px-4 py-3 sm:w-[min(1720px,calc(100vw-48px))] sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6">
             <div className="flex items-center justify-between gap-3">
               <Link href="/" className="flex items-center gap-2 min-w-0">
-                <div className="grid size-9 place-items-center rounded-2xl bg-white/70 border border-[color:var(--border)] shadow-sm overflow-hidden sm:size-10">
-                  <img src="/brand/gs-logo-tab.png" alt="Guru Scan" className="h-8 w-8 sm:h-9 sm:w-9" />
+                <div className="grid size-9 place-items-center overflow-hidden sm:size-10">
+                  <img src="/brand/gs-logo-transparent.png" alt="Guru Scan" className="h-8 w-8 sm:h-9 sm:w-9" />
                 </div>
                 <div className="leading-tight min-w-0">
                   <div className="font-semibold whitespace-nowrap">Guru Scan</div>
@@ -57,19 +58,19 @@ export async function Shell({
             <div className="flex items-center justify-between gap-3">
               <nav className="flex max-w-[72vw] items-center gap-1 overflow-x-auto whitespace-nowrap text-xs text-[color:var(--muted)] sm:max-w-none sm:gap-2 sm:text-sm">
                 <Link
-                  className="rounded-full px-2 py-1.5 transition hover:bg-black/5 hover:text-[color:var(--text)] sm:px-3 sm:py-2"
+                  className="rounded-full px-2 py-1.5 transition hover:bg-[color:var(--surface-2)] hover:text-[color:var(--text)] sm:px-3 sm:py-2"
                   href="/gurus"
                 >
                   Browse
                 </Link>
                 <Link
-                  className="rounded-full px-2 py-1.5 transition hover:bg-black/5 hover:text-[color:var(--text)] sm:px-3 sm:py-2"
+                  className="rounded-full px-2 py-1.5 transition hover:bg-[color:var(--surface-2)] hover:text-[color:var(--text)] sm:px-3 sm:py-2"
                   href="/leaderboard"
                 >
                   Leaderboard
                 </Link>
                 <Link
-                  className="rounded-full px-2 py-1.5 transition hover:bg-black/5 hover:text-[color:var(--text)] sm:px-3 sm:py-2"
+                  className="rounded-full px-2 py-1.5 transition hover:bg-[color:var(--surface-2)] hover:text-[color:var(--text)] sm:px-3 sm:py-2"
                   href="/about"
                 >
                   About

@@ -15,7 +15,7 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
     <Link
       href={`/gurus/${c.guru_handle}`}
       data-card
-      className="group relative w-[240px] sm:w-[300px] md:w-[340px] shrink-0 snap-start overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-sm hover:shadow-md transition"
+      className="group relative w-[240px] sm:w-[300px] md:w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-sm hover:shadow-lg transition-all duration-200 hover:scale-[1.01] hover:-translate-y-0.5"
     >
       <div className="relative h-40 sm:h-44">
         <SmartImage

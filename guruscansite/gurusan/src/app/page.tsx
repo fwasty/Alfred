@@ -214,7 +214,7 @@ export default async function Home({
         <section className="grid gap-6">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <div className="text-xs font-medium text-[color:var(--text)]">Trending right now</div>
+              <div className="text-sm font-semibold tracking-tight text-[color:var(--text)]">🔥 Trending right now</div>
               <div className="mt-1 text-xs text-[color:var(--muted)]">High-review offers people actually buy.</div>
             </div>
             <div className="flex items-center gap-3">
@@ -227,7 +227,7 @@ export default async function Home({
             </div>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {trending.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
@@ -238,12 +238,12 @@ export default async function Home({
 
           <div className="flex items-end justify-between gap-4">
             <div>
-              <div className="text-xs font-medium text-[color:var(--text)]">Top performers</div>
+              <div className="text-sm font-semibold tracking-tight text-[color:var(--text)]">🏆 Top performers</div>
               <div className="mt-1 text-xs text-[color:var(--muted)]">Highest review volume (strict).</div>
             </div>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topCourses.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
@@ -254,7 +254,7 @@ export default async function Home({
 
           <div className="flex items-end justify-between gap-4">
             <div>
-              <div className="text-xs font-medium text-[color:var(--text)]">Top free offers</div>
+              <div className="text-sm font-semibold tracking-tight text-[color:var(--text)]">🆓 Top free offers</div>
               <div className="mt-1 text-xs text-[color:var(--muted)]">Anything marked “FREE”.</div>
             </div>
             <Link className="text-xs underline-offset-4 hover:underline text-[color:var(--muted)]" href="/leaderboard?tab=free">
@@ -262,7 +262,7 @@ export default async function Home({
             </Link>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topFree.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
@@ -273,7 +273,7 @@ export default async function Home({
 
           <div className="flex items-end justify-between gap-4">
             <div>
-              <div className="text-xs font-medium text-[color:var(--text)]">Top clipping offers</div>
+              <div className="text-sm font-semibold tracking-tight text-[color:var(--text)]">✂️ Top clipping offers</div>
               <div className="mt-1 text-xs text-[color:var(--muted)]">Clips / clipping / content rewards.</div>
             </div>
             <Link className="text-xs underline-offset-4 hover:underline text-[color:var(--muted)]" href="/clipping">
@@ -281,7 +281,7 @@ export default async function Home({
             </Link>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-3 sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topClipping.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
