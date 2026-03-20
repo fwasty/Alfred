@@ -4,6 +4,7 @@ import { Badge, Card } from '@/components/ui'
 import { listGurus } from '@/lib/db'
 import { CATEGORIES } from '@/lib/categories'
 import { GuruCard } from '@/components/GuruCard'
+import { db } from '@/lib/sqlite'
 
 export default async function GurusPage({
   searchParams,
@@ -16,7 +17,7 @@ export default async function GurusPage({
 
   let gurus = listGurus({ category: cat === 'All' ? null : cat })
 
-  // Auto-sync a few missing Whop profiles so the browse page shows images/ratings without manual clicking.
+  // Auto-sync a few missing Whop profiles
   try {
     const { ingestWhopCompanyFromPublicUrl } = await import('@/lib/whop')
     const { updateGuruFromWhop, upsertCourseFromWhop } = await import('@/lib/db')
@@ -58,43 +59,57 @@ export default async function GurusPage({
     // ignore
   }
 
+  const totalGurus = (db.prepare("SELECT COUNT(*) as c FROM gurus WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
+
   return (
     <Shell>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">Browse</h1>
-          <p className="mt-2 text-sm text-neutral-600">Browse Whop offers by creator. Filter by category and sort by popularity.</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <Badge>All categories</Badge>
-            <Badge>Whop-sourced ratings</Badge>
-            <Badge className="bg-indigo-50">Reviews coming soon</Badge>
+      <div className="grid gap-8">
+
+        {/* Header */}
+        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 sm:p-8">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-[color:var(--text)] md:text-4xl">Browse Gurus</h1>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">
+                {totalGurus.toLocaleString()} creators indexed from Whop. Filter by category, sorted by review count.
+              </p>
+            </div>
+            <div className="flex items-center gap-3 text-sm">
+              <span className="rounded-full bg-emerald-600 px-3 py-1 text-xs font-semibold text-white">{gurus.length} results</span>
+            </div>
+          </div>
+
+          {/* Category filter */}
+          <div className="mt-5 flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-1">
+            {CATEGORIES.map((c) => (
+              <Link
+                key={c}
+                href={c === 'All' ? '/gurus' : `/gurus?cat=${encodeURIComponent(c)}`}
+                className={`rounded-full px-3.5 py-2 text-xs font-medium transition ${
+                  c === cat
+                    ? 'bg-[color:var(--accent)] text-white shadow-sm'
+                    : 'border border-[color:var(--border)] bg-[color:var(--surface-2)] text-[color:var(--muted)] hover:text-[color:var(--text)]'
+                }`}
+              >
+                {c}
+              </Link>
+            ))}
           </div>
         </div>
-        <Link className="text-sm text-neutral-600 underline-offset-4 hover:underline" href="/">
-          Back home
-        </Link>
-      </div>
 
-      <div className="mt-6 flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-1">
-        {CATEGORIES.map((c) => (
-          <Link
-            key={c}
-            href={c === 'All' ? '/gurus' : `/gurus?cat=${encodeURIComponent(c)}`}
-            className={`rounded-full px-3 py-2 text-xs border border-black/10 bg-white/60 hover:bg-white ${c === cat ? 'text-neutral-900 font-semibold' : 'text-neutral-700'}`}
-          >
-            {c}
-          </Link>
-        ))}
-      </div>
+        {/* Grid */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {gurus.map((g) => (
+            <GuruCard key={g.id} guru={g} />
+          ))}
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
-        {gurus.map((g) => (
-          <GuruCard key={g.id} guru={g} />
-        ))}
+          {gurus.length === 0 ? (
+            <Card className="sm:col-span-2 lg:col-span-3 text-sm text-[color:var(--muted)] text-center py-12">
+              No gurus found in this category.
+            </Card>
+          ) : null}
+        </div>
 
-        {gurus.length === 0 ? (
-          <Card className="text-sm text-neutral-700">No gurus yet.</Card>
-        ) : null}
       </div>
     </Shell>
   )
