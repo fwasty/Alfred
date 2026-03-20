@@ -13,7 +13,7 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
     <Link
       href={`/gurus/${c.guru_handle}`}
       data-card
-      className="group relative w-[260px] sm:w-[300px] md:w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+      className="group relative w-[240px] sm:w-[300px] md:w-[340px] shrink-0 snap-start overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-sm hover:shadow-md transition"
     >
       <div className="relative h-40 sm:h-44">
         <SmartImage
@@ -30,26 +30,28 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
             <div className="truncate text-lg font-semibold text-white">{displayName}</div>
             <div className="truncate text-xs text-white/80">by {c.guru_name}</div>
           </div>
-          <div className="shrink-0 rounded-xl bg-black/60 px-2.5 py-1.5 shadow-sm backdrop-blur-sm">
-            <div className="flex items-baseline gap-1.5">
-              <div className="text-[10px] font-bold tracking-wider text-emerald-400">WHOP</div>
-              <div className="text-sm font-bold text-white">
+          <div className="shrink-0 rounded-2xl bg-white/92 px-3 py-2 text-neutral-900 shadow-sm backdrop-blur">
+            <div
+              title="Whop rating: stars + review count sourced from public Whop pages."
+              className="flex items-baseline justify-between rounded-lg bg-emerald-500/15 px-2 py-1"
+            >
+              <div className="text-[11px] font-semibold tracking-wide text-emerald-800">WHOP</div>
+              <div className="text-right text-sm font-semibold text-emerald-900">
                 {c.whop_rating != null ? c.whop_rating.toFixed(1) : '—'}
+                {c.whop_reviews_count != null ? (
+                  <span className="ml-1 text-[11px] font-medium text-emerald-800">({c.whop_reviews_count.toLocaleString()})</span>
+                ) : null}
               </div>
-              {c.whop_reviews_count != null ? (
-                <div className="text-[10px] text-white/70">({c.whop_reviews_count.toLocaleString()})</div>
-              ) : null}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="px-3 py-3">
-        {cleanSummary ? (
-          <div className="text-xs text-[color:var(--muted)] line-clamp-2 leading-relaxed">{cleanSummary}</div>
-        ) : null}
-        <div className="mt-2 text-xs font-medium text-[color:var(--accent)] group-hover:underline underline-offset-2">
-          View profile →
+      <div className="p-4 sm:p-5">
+        {cleanSummary ? <div className="text-sm text-[color:var(--muted)] line-clamp-2">{cleanSummary}</div> : null}
+        <div className="mt-3 flex items-center justify-between text-xs text-[color:var(--muted-2)]">
+          <div>{c.whop_reviews_count ? `${c.whop_reviews_count.toLocaleString()} reviews on Whop` : ''}</div>
+          <div className="font-medium underline-offset-4 group-hover:underline text-[color:var(--text)]">View profile →</div>
         </div>
       </div>
     </Link>
