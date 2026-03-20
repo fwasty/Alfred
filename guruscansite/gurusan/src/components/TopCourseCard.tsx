@@ -25,22 +25,30 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
 
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
           <div className="min-w-0">
             <div className="truncate text-lg font-semibold text-white">{displayName}</div>
             <div className="truncate text-xs text-white/80">by {c.guru_name}</div>
           </div>
-          <div className="shrink-0 rounded-2xl bg-white/92 px-3 py-2 text-neutral-900 shadow-sm backdrop-blur">
-            <div
-              title="Whop rating: stars + review count sourced from public Whop pages."
-              className="flex items-baseline justify-between rounded-lg bg-emerald-500/15 px-2 py-1"
-            >
-              <div className="text-[11px] font-semibold tracking-wide text-emerald-800">WHOP</div>
-              <div className="text-right text-sm font-semibold text-emerald-900">
-                {c.whop_rating != null ? c.whop_rating.toFixed(1) : '—'}
+
+          {/* Rating badges */}
+          <div className="shrink-0 flex flex-col gap-1">
+            <div className="rounded-lg bg-white/90 px-2 py-1 shadow-sm backdrop-blur">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] font-semibold tracking-wide text-emerald-700">WHOP</span>
+                <span className="text-sm font-bold text-emerald-900">
+                  {c.whop_rating != null ? c.whop_rating.toFixed(1) : '—'}
+                </span>
                 {c.whop_reviews_count != null ? (
-                  <span className="ml-1 text-[11px] font-medium text-emerald-800">({c.whop_reviews_count.toLocaleString()})</span>
+                  <span className="text-[10px] text-emerald-700/70">({c.whop_reviews_count.toLocaleString()})</span>
                 ) : null}
+              </div>
+            </div>
+            <div className="rounded-lg bg-white/90 px-2 py-1 shadow-sm backdrop-blur">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] font-semibold tracking-wide text-violet-700">GURU</span>
+                <span className="text-sm font-bold text-violet-900">—</span>
+                <span className="text-[10px] text-violet-600/70">soon</span>
               </div>
             </div>
           </div>
