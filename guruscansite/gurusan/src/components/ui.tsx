@@ -10,7 +10,7 @@ export function Badge({ children, className = '' }: { children: React.ReactNode;
 
 export function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-2xl border border-black/10 bg-white/70 p-5 shadow-[0_1px_0_rgba(0,0,0,0.04)] backdrop-blur ${className}`}>
+    <div className={`rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 shadow-[0_1px_0_rgba(0,0,0,0.04)] backdrop-blur ${className}`}>
       {children}
     </div>
   )
@@ -30,8 +30,8 @@ export function Button({
   const base = 'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition'
   const styles =
     variant === 'primary'
-      ? 'bg-black text-white hover:bg-black/90'
-      : 'bg-white/70 text-neutral-900 hover:bg-black/5 border border-black/10'
+      ? 'bg-[color:var(--accent)] text-white hover:opacity-90'
+      : 'bg-[color:var(--surface)] text-[color:var(--text)] hover:opacity-80 border border-[color:var(--border)]'
 
   return (
     <button type={type} className={`${base} ${styles} ${className}`}>

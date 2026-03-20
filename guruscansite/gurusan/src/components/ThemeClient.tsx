@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const THEMES = new Set(['paper', 'midnight', 'mono', 'glass', 'editorial'])
 
@@ -25,4 +25,32 @@ export function ThemeClient() {
   }, [])
 
   return null
+}
+
+/** Light/Dark mode toggle button for the nav */
+export function ThemeToggle() {
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem('gs_theme') || 'paper'
+    setIsDark(saved === 'midnight')
+  }, [])
+
+  const toggle = () => {
+    const next = isDark ? 'paper' : 'midnight'
+    window.localStorage.setItem('gs_theme', next)
+    document.documentElement.dataset.theme = next
+    document.documentElement.style.colorScheme = next === 'midnight' ? 'dark' : 'light'
+    setIsDark(!isDark)
+  }
+
+  return (
+    <button
+      onClick={toggle}
+      aria-label="Toggle dark mode"
+      className="grid size-9 place-items-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] text-sm transition hover:bg-black/5 dark:hover:bg-white/10"
+    >
+      {isDark ? '☀️' : '🌙'}
+    </button>
+  )
 }

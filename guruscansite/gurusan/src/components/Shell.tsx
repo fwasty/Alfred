@@ -4,6 +4,7 @@ import { AppViewport } from '@/components/AppViewport'
 import { getSessionUserId } from '@/lib/auth'
 import { db } from '@/lib/sqlite'
 import { AuthNav } from '@/components/AuthNav'
+import { ThemeToggle } from '@/components/ThemeClient'
 // DebugHud removed
 
 export async function Shell({
@@ -47,7 +48,8 @@ export async function Shell({
                 </div>
               </Link>
 
-              <div className="sm:hidden">
+              <div className="flex items-center gap-2 sm:hidden">
+                <ThemeToggle />
                 <AuthNav user={user} />
               </div>
             </div>
@@ -74,7 +76,8 @@ export async function Shell({
                 </Link>
               </nav>
 
-              <div className="hidden sm:block">
+              <div className="hidden sm:flex sm:items-center sm:gap-2">
+                <ThemeToggle />
                 <AuthNav user={user} />
               </div>
             </div>

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { Shell } from '@/components/Shell'
 import { Badge, Card, Button } from '@/components/ui'
 import { VerifiedBadge } from '@/components/VerifiedBadge'
+import { RatingDistribution } from '@/components/RatingDistribution'
 import { getGuruByHandle, listCoursesForGuru, getWhopAggregateForGuru } from '@/lib/db'
 import { pickCreatorAt } from '@/lib/handles'
 
@@ -69,14 +70,14 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
             <img
               src={guru.image_url || 'https://api.dicebear.com/9.x/identicon/svg?seed=default'}
               alt={displayName}
-              className="size-14 shrink-0 rounded-3xl border border-black/10 bg-white object-cover sm:size-16"
+              className="size-14 shrink-0 rounded-3xl border border-[color:var(--border)] bg-white object-cover sm:size-16"
             />
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-3">
                 <h1 className="min-w-0 truncate text-2xl font-semibold tracking-tight sm:text-4xl">{displayName}</h1>
                 <VerifiedBadge verified={!!guru.verified} />
               </div>
-              <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-neutral-600">
+              <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-[color:var(--muted)]">
                 <span className="truncate">@{guru.handle ?? 'no-handle'}</span>
                 {pickCreatorAt(guru) ? (
                   <>
@@ -124,7 +125,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
             <div className="mt-4 grid grid-cols-2 gap-3">
               <div
                 title="Whop rating: weighted average across offers, using public Whop review counts."
-                className={`rounded-2xl px-4 py-3 ${whopAgg.avg_rating && whopAgg.avg_rating >= 4.5 ? 'bg-emerald-500 text-white' : 'bg-lime-400 text-neutral-900'}`}
+                className={`rounded-2xl px-4 py-3 ${whopAgg.avg_rating && whopAgg.avg_rating >= 4.5 ? 'bg-emerald-500 text-white' : 'bg-lime-400 text-[color:var(--text)]'}`}
               >
                 <div className="text-xs font-semibold tracking-wide">WHOP (ALL OFFERS)</div>
                 <div className="mt-1 text-3xl font-semibold">{whopAgg.avg_rating != null ? whopAgg.avg_rating.toFixed(2) : '—'}</div>
@@ -132,7 +133,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
               </div>
               <div
                 title="Guru Scan rating: ratings left on Guru Scan (coming soon)."
-                className={`rounded-2xl px-4 py-3 ${guru.guru_rating && guru.guru_rating >= 4.5 ? 'bg-emerald-500 text-white' : 'bg-neutral-200 text-neutral-900'}`}
+                className={`rounded-2xl px-4 py-3 ${guru.guru_rating && guru.guru_rating >= 4.5 ? 'bg-emerald-500 text-white' : 'bg-[color:var(--surface-2)] text-[color:var(--text)]'}`}
               >
                 <div className="text-xs font-semibold tracking-wide">GURU RATING</div>
                 <div className="mt-1 text-3xl font-semibold">{guru.guru_rating != null ? guru.guru_rating.toFixed(1) : '—'}</div>
@@ -140,24 +141,31 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
               </div>
             </div>
 
-            {guru.bio ? <p className="mt-4 text-neutral-800">{guru.bio}</p> : null}
+            {/* Rating distribution bars */}
+            {guru.whop_star_counts ? (
+              <div className="mt-4">
+                <RatingDistribution starCounts={JSON.parse(guru.whop_star_counts)} />
+              </div>
+            ) : null}
 
-            <div className="mt-6 rounded-2xl border border-black/10 bg-neutral-50/80 p-4">
+            {guru.bio ? <p className="mt-4 text-[color:var(--text)]">{guru.bio}</p> : null}
+
+            <div className="mt-6 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-4">
               <div className="text-sm font-semibold">Before you buy</div>
-              <div className="mt-2 text-sm text-neutral-600 leading-relaxed">
+              <div className="mt-2 text-sm text-[color:var(--muted)] leading-relaxed">
                 Always read the refund policy on Whop before purchasing. Check recent reviews for specifics on what&apos;s included. Consider your available time and experience level.
               </div>
             </div>
 
             <div className="mt-4 text-sm font-semibold">Who this is for</div>
-            <div className="mt-1 text-sm text-neutral-700">
+            <div className="mt-1 text-sm text-[color:var(--muted)]">
               Beginners who want structure, intermediates who want a community, and advanced traders looking for execution feedback — you’ll get the most value if you have time to show up consistently.
             </div>
           </Card>
 
           <Card>
             <div className="text-sm font-semibold">Whop</div>
-            <div className="mt-2 text-sm text-neutral-700">
+            <div className="mt-2 text-sm text-[color:var(--muted)]">
               Ratings and review counts are sourced from public Whop pages. Review text stays on Whop.
             </div>
 
@@ -169,7 +177,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
               </div>
             ) : null}
 
-            <div className="mt-6 border-t border-black/10 pt-5">
+            <div className="mt-6 border-t border-[color:var(--border)] pt-5">
               <div className="text-sm font-semibold">Socials</div>
               <div className="mt-3 flex flex-col gap-2 text-sm">
                 {guru.twitter_url ? (
@@ -188,7 +196,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                   <a className="underline-offset-4 hover:underline" href={guru.website_url} target="_blank" rel="noreferrer">Website</a>
                 ) : null}
                 {!guru.twitter_url && !guru.youtube_url && !guru.tiktok_url && !guru.instagram_url && !guru.website_url ? (
-                  <div className="text-neutral-600">No socials yet.</div>
+                  <div className="text-[color:var(--muted)]">No socials yet.</div>
                 ) : null}
               </div>
 
@@ -234,14 +242,14 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                     <img
                       src={c.image_url}
                       alt={c.name}
-                      className="h-20 w-32 rounded-xl border border-black/10 object-cover"
+                      className="h-20 w-32 rounded-xl border border-[color:var(--border)] object-cover"
                     />
                   ) : null}
                   <div className="flex-1">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <div className="font-semibold">{c.name}</div>
-                        <div className="mt-1 text-xs text-neutral-600">
+                        <div className="mt-1 text-xs text-[color:var(--muted)]">
                           {c.price_cents ? `$${(c.price_cents / 100).toFixed(2)}` : 'Price: n/a'}
                         </div>
                       </div>
@@ -253,9 +261,9 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                     </div>
 
                     {c.summary ? (
-                      <div className="mt-2 text-sm text-neutral-700 line-clamp-3">{c.summary}</div>
+                      <div className="mt-2 text-sm text-[color:var(--muted)] line-clamp-3">{c.summary}</div>
                     ) : (
-                      <div className="mt-2 text-sm text-neutral-500">No description yet.</div>
+                      <div className="mt-2 text-sm text-[color:var(--muted-2)]">No description yet.</div>
                     )}
 
                     {c.whop_url ? (
@@ -267,7 +275,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                     ) : null}
 
                     {c.whop_rating != null ? (
-                      <div className="mt-3 flex items-center gap-2 text-xs text-neutral-500">
+                      <div className="mt-3 flex items-center gap-2 text-xs text-[color:var(--muted-2)]">
                         <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 font-medium text-emerald-800">
                           {c.whop_rating.toFixed(1)} ★
                         </span>
@@ -280,7 +288,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                 </div>
                       </Card>
                     ))}
-                    {items.length === 0 ? <Card className="text-sm text-neutral-700">No items yet.</Card> : null}
+                    {items.length === 0 ? <Card className="text-sm text-[color:var(--muted)]">No items yet.</Card> : null}
                   </div>
                 </section>
               )
@@ -290,7 +298,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                   {main.length > 0 ? <Section title="Main offers" items={main} /> : null}
                   {clipping.length > 0 ? <Section title="Clipping" items={clipping} /> : null}
                   {main.length === 0 && clipping.length === 0 ? (
-                    <Card className="text-sm text-neutral-600">No offers listed yet.</Card>
+                    <Card className="text-sm text-[color:var(--muted)]">No offers listed yet.</Card>
                   ) : null}
                 </>
               )
@@ -302,7 +310,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
           <h2 className="text-xl font-semibold">Reviews</h2>
           <Card className="mt-4">
             <div className="text-sm font-semibold">No reviews yet</div>
-            <div className="mt-1 text-sm text-neutral-700">
+            <div className="mt-1 text-sm text-[color:var(--muted)]">
               Next: verified login + “what you bought / timeframe / receipts optional” + creator reply.
             </div>
           </Card>

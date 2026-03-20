@@ -30,10 +30,10 @@ export function SearchHero({ items }: { items: Item[] }) {
       <div className="text-xs font-medium text-neutral-700">Search creators</div>
       <div className="mt-2 rounded-2xl border border-black/10 bg-white p-2 shadow-sm">
         <div className="flex items-center gap-2 px-2 py-1.5">
-          <div className="text-neutral-400">⌕</div>
+          <div className="text-[color:var(--muted-2)]">🔍</div>
           <input
-            className="w-full bg-transparent text-sm outline-none placeholder:text-neutral-400"
-            placeholder="Search a creator (ex: TJR)…"
+            className="w-full bg-transparent text-sm text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted-2)]"
+            placeholder="Search a creator, course, or guru…"
             value={q}
             onChange={(e) => setQ(e.target.value)}
           />
