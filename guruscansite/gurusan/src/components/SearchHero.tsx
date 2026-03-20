@@ -26,13 +26,13 @@ export function SearchHero({ items }: { items: Item[] }) {
   }, [q])
 
   return (
-    <div className="relative">
-      <div className="rounded-xl border border-white/30 bg-white/40 backdrop-blur-md shadow-sm px-3 py-2">
+    <div className="relative mx-auto max-w-md">
+      <div className="rounded-full border border-white/25 bg-black/30 backdrop-blur-md shadow-lg px-4 py-2.5">
         <div className="flex items-center gap-2">
-          <div className="text-white/60 text-sm">🔍</div>
+          <div className="text-white/50 text-sm">🔍</div>
           <input
-            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/50"
-            placeholder="Search a creator, course, or guru…"
+            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/45"
+            placeholder="Search creators, courses…"
             value={q}
             onChange={(e) => setQ(e.target.value)}
           />

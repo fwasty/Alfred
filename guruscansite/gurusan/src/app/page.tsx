@@ -195,17 +195,17 @@ export default async function Home({
 
         {/* Social proof stats */}
         <section className="grid grid-cols-3 gap-3 sm:gap-4">
-          <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-[color:var(--text)]">{guruCount.toLocaleString()}</div>
-            <div className="mt-1 text-xs text-[color:var(--muted)]">Gurus rated</div>
+          <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/8 p-4 text-center">
+            <div className="text-2xl sm:text-3xl font-bold text-emerald-600">{guruCount.toLocaleString()}</div>
+            <div className="mt-1 text-xs font-medium text-emerald-600/70">Gurus rated</div>
           </div>
-          <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-[color:var(--text)]">{courseCount.toLocaleString()}</div>
-            <div className="mt-1 text-xs text-[color:var(--muted)]">Courses tracked</div>
+          <div className="rounded-xl border border-violet-500/20 bg-violet-500/8 p-4 text-center">
+            <div className="text-2xl sm:text-3xl font-bold text-violet-600">{courseCount.toLocaleString()}</div>
+            <div className="mt-1 text-xs font-medium text-violet-600/70">Courses tracked</div>
           </div>
-          <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-[color:var(--text)]">{categoryCount}</div>
-            <div className="mt-1 text-xs text-[color:var(--muted)]">Categories</div>
+          <div className="rounded-xl border border-sky-500/20 bg-sky-500/8 p-4 text-center">
+            <div className="text-2xl sm:text-3xl font-bold text-sky-600">{categoryCount}</div>
+            <div className="mt-1 text-xs font-medium text-sky-600/70">Categories</div>
           </div>
         </section>
 
