@@ -4,7 +4,10 @@ import { Shell } from '@/components/Shell'
 import { Badge, Card, Button } from '@/components/ui'
 import { VerifiedBadge } from '@/components/VerifiedBadge'
 import { RatingDistribution } from '@/components/RatingDistribution'
+import { GuruReviewForm } from '@/components/GuruReviewForm'
+import { GuruReviewList } from '@/components/GuruReviewList'
 import { getGuruByHandle, listCoursesForGuru, getWhopAggregateForGuru } from '@/lib/db'
+import { getSessionUserId } from '@/lib/auth'
 import { pickCreatorAt } from '@/lib/handles'
 
 export default async function GuruPage({ params }: { params: Promise<{ handle: string }> }) {
@@ -58,6 +61,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
 
   const courses = listCoursesForGuru(guru.id)
   const whopAgg = getWhopAggregateForGuru(guru.id)
+  const userId = await getSessionUserId()
 
   // Default display name = Whop handle unless claimed/customized.
   const displayName = (guru.creator_name && guru.creator_name.trim()) || guru.handle || guru.name
@@ -95,7 +99,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                 </span>
                 <span title="Review volume tier, based on total Whop reviews across offers.">
                   <Badge className="bg-white">
-                    Whop reviews: {whopAgg.total_reviews >= 1000 ? '1k+' : whopAgg.total_reviews >= 500 ? '500+' : whopAgg.total_reviews >= 100 ? '100+' : whopAgg.total_reviews >= 50 ? '50+' : whopAgg.total_reviews > 0 ? '<50' : '—'}
+                    Whop reviews: {whopAgg.total_reviews >= 1000 ? '1k+' : whopAgg.total_reviews >= 500 ? '500+' : whopAgg.total_reviews >= 100 ? '100+' : whopAgg.total_reviews >= 50 ? '50+' : whopAgg.total_reviews > 0 ? '<50' : '-'}
                   </Badge>
                 </span>
                 <span title="We show Whop rating separately from Guru Scan rating.">
@@ -128,7 +132,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                 className={`rounded-2xl px-4 py-3 ${whopAgg.avg_rating && whopAgg.avg_rating >= 4.5 ? 'bg-emerald-500 text-white' : 'bg-lime-400 text-[color:var(--text)]'}`}
               >
                 <div className="text-xs font-semibold tracking-wide">WHOP (ALL OFFERS)</div>
-                <div className="mt-1 text-3xl font-semibold">{whopAgg.avg_rating != null ? whopAgg.avg_rating.toFixed(2) : '—'}</div>
+                <div className="mt-1 text-3xl font-semibold">{whopAgg.avg_rating != null ? whopAgg.avg_rating.toFixed(2) : '-'}</div>
                 <div className="mt-1 text-xs opacity-80">{whopAgg.total_reviews ? `${whopAgg.total_reviews} reviews` : 'no data'}</div>
               </div>
               <div
@@ -136,7 +140,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                 className={`rounded-2xl px-4 py-3 ${guru.guru_rating && guru.guru_rating >= 4.5 ? 'bg-emerald-500 text-white' : 'bg-[color:var(--surface-2)] text-[color:var(--text)]'}`}
               >
                 <div className="text-xs font-semibold tracking-wide">GURU RATING</div>
-                <div className="mt-1 text-3xl font-semibold">{guru.guru_rating != null ? guru.guru_rating.toFixed(1) : '—'}</div>
+                <div className="mt-1 text-3xl font-semibold">{guru.guru_rating != null ? guru.guru_rating.toFixed(1) : '-'}</div>
                 <div className="mt-1 text-xs opacity-80">{guru.guru_reviews_count != null ? `${guru.guru_reviews_count} reviews` : '0 reviews'}</div>
               </div>
             </div>
@@ -159,7 +163,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
 
             <div className="mt-4 text-sm font-semibold">Who this is for</div>
             <div className="mt-1 text-sm text-[color:var(--muted)]">
-              Beginners who want structure, intermediates who want a community, and advanced traders looking for execution feedback — you’ll get the most value if you have time to show up consistently.
+              Beginners who want structure, intermediates who want a community, and advanced traders looking for execution feedback - you'll get the most value if you have time to show up consistently.
             </div>
           </Card>
 
@@ -201,9 +205,15 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
               </div>
 
               <div className="mt-6 grid gap-2">
-                <Link href={`/signup?next=/gurus/${guru.handle ?? ''}`}>
-                  <Button className="w-full">Create account to leave a review</Button>
-                </Link>
+                {!userId ? (
+                  <Link href={`/signup?next=/gurus/${guru.handle ?? ''}`}>
+                    <Button className="w-full">Sign up to review</Button>
+                  </Link>
+                ) : (
+                  <a href="#community-reviews">
+                    <Button className="w-full">Write a review ↓</Button>
+                  </a>
+                )}
                 <Link href={`/signup?next=/gurus/${guru.handle ?? ''}`}>
                   <Button variant="ghost" className="w-full">Verify / claim this profile</Button>
                 </Link>
@@ -307,13 +317,31 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold">Reviews</h2>
-          <Card className="mt-4">
-            <div className="text-sm font-semibold">No reviews yet</div>
-            <div className="mt-1 text-sm text-[color:var(--muted)]">
-              Next: verified login + “what you bought / timeframe / receipts optional” + creator reply.
-            </div>
-          </Card>
+          <h2 className="text-xl font-semibold text-[color:var(--text)]">Community Reviews</h2>
+          <p className="mt-1 text-sm text-[color:var(--muted)]">
+            Honest reviews from real users — the Guru Scan rating.
+          </p>
+
+          <div className="mt-4 grid gap-4">
+            {userId ? (
+              <GuruReviewForm guruId={guru.id} guruName={displayName} />
+            ) : (
+              <div className="rounded-2xl border border-violet-500/15 bg-violet-500/5 p-5 text-center">
+                <div className="text-sm font-medium text-[color:var(--text)]">Want to leave a review?</div>
+                <div className="mt-1 text-xs text-[color:var(--muted)]">Create a free account to share your experience.</div>
+                <div className="mt-3 flex gap-2 justify-center">
+                  <Link href={`/signup?next=/gurus/${guru.handle ?? ''}`}>
+                    <Button>Sign up</Button>
+                  </Link>
+                  <Link href={`/login?next=/gurus/${guru.handle ?? ''}`}>
+                    <Button variant="ghost">Log in</Button>
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            <GuruReviewList guruId={guru.id} />
+          </div>
         </section>
       </div>
     </Shell>
