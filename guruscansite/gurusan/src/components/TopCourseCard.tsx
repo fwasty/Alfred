@@ -21,7 +21,7 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
           fallbackSrc={c.guru_image_url}
           seed={c.whop_url || c.guru_handle || c.name}
           alt={displayName}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
 

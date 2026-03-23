@@ -17,7 +17,7 @@ export function GuruCard({ guru }: { guru: DbGuru }) {
         <img
           src={pickImageUrl({ primary: guru.image_url, seed: guru.handle || guru.name || 'guru' })}
           alt={guru.name}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 

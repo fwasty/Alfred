@@ -73,7 +73,7 @@ function Row({
       <img
         src={pickImageUrl({ primary: imageUrl, seed: imageSeed || name })}
         alt=""
-        className="size-9 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-2)] object-cover sm:size-11"
+        className="size-9 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-2)] object-cover object-top sm:size-11"
         loading="lazy"
       />
 

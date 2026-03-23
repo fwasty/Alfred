@@ -74,7 +74,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
             <img
               src={guru.image_url || 'https://api.dicebear.com/9.x/identicon/svg?seed=default'}
               alt={displayName}
-              className="size-14 shrink-0 rounded-3xl border border-[color:var(--border)] bg-white object-cover sm:size-16"
+              className="size-14 shrink-0 rounded-3xl border border-[color:var(--border)] bg-white object-cover object-top sm:size-16"
             />
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-3">
