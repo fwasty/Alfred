@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { findUserByUsername } from '@/lib/db'
 import { setSessionCookie, verifyPassword } from '@/lib/auth'
+import { rateLimit, getClientIp } from '@/lib/rateLimit'
 
 const schema = z.object({
   username: z.string().min(1),
@@ -9,6 +10,13 @@ const schema = z.object({
 })
 
 export async function POST(req: Request) {
+  // Rate limit: 10 attempts per 15 minutes per IP
+  const ip = getClientIp(req)
+  const rl = rateLimit(`login:${ip}`, 10, 15 * 60 * 1000)
+  if (!rl.ok) {
+    return NextResponse.json({ error: 'Too many login attempts. Try again in 15 minutes.' }, { status: 429 })
+  }
+
   const body = await req.json().catch(() => null)
   const parsed = schema.safeParse(body)
   if (!parsed.success) {

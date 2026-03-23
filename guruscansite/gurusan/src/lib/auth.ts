@@ -44,7 +44,8 @@ export async function setSessionCookie(userId: string) {
   jar.set(COOKIE_NAME, token, {
     httpOnly: true,
     sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
+    // Always secure in production (behind Cloudflare HTTPS even if origin is HTTP)
+    secure: true,
     path: '/',
     maxAge: 60 * 60 * 24 * 30, // 30 days
   })

@@ -8,6 +8,8 @@ type Review = {
   title: string | null
   body: string
   anonymous: number
+  recommend: number | null
+  tags: string | null
   username: string
   created_at: number
   updated_at: number
@@ -67,6 +69,12 @@ export function GuruReviewList({ guruId }: { guruId: string }) {
               <div className="flex items-center gap-2">
                 <Stars rating={r.rating} />
                 <span className="text-xs font-medium text-[color:var(--text)]">{r.username}</span>
+                {r.recommend === 1 && (
+                  <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-700">👍 Recommends</span>
+                )}
+                {r.recommend === 0 && (
+                  <span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-[10px] font-medium text-rose-700">👎 Doesn't recommend</span>
+                )}
               </div>
               {r.title && (
                 <div className="mt-1 text-sm font-semibold text-[color:var(--text)]">{r.title}</div>
@@ -77,6 +85,15 @@ export function GuruReviewList({ guruId }: { guruId: string }) {
             </div>
           </div>
           <div className="mt-2 text-sm text-[color:var(--muted)] leading-relaxed">{r.body}</div>
+          {r.tags && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {r.tags.split(',').map((tag) => (
+                <span key={tag} className="rounded-full bg-[color:var(--surface-2)] border border-[color:var(--border)] px-2 py-0.5 text-[10px] font-medium text-[color:var(--muted)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
