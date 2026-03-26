@@ -42,28 +42,28 @@ export function SignupForm() {
   return (
     <div className="mx-auto max-w-lg">
       <h1 className="text-4xl font-semibold tracking-tight">Create your account</h1>
-      <p className="mt-2 text-sm text-neutral-600">You’ll need an account to view full details and leave reviews.</p>
+      <p className="mt-2 text-sm text-[color:var(--muted)]">You’ll need an account to view full details and leave reviews.</p>
 
       <Card className="mt-6">
         <div className="grid gap-3">
           <a
-            className="inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm font-medium hover:bg-black/5"
+            className="inline-flex items-center justify-center rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] px-4 py-3 text-sm font-medium hover:bg-[color:var(--surface-2)]"
             href="/api/auth/google/start"
           >
             Continue with Google
           </a>
 
-          <div className="my-1 flex items-center gap-3 text-xs text-neutral-500">
-            <div className="h-px flex-1 bg-black/10" />
+          <div className="my-1 flex items-center gap-3 text-xs text-[color:var(--muted-2)]">
+            <div className="h-px flex-1 bg-[color:var(--border)]" />
             OR
-            <div className="h-px flex-1 bg-black/10" />
+            <div className="h-px flex-1 bg-[color:var(--border)]" />
           </div>
 
           <form onSubmit={onSubmit} className="grid gap-3">
             <label className="grid gap-1">
-              <span className="text-xs font-medium text-neutral-600">Username</span>
+              <span className="text-xs font-medium text-[color:var(--muted)]">Username</span>
               <input
-                className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none"
+                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] px-4 py-3 text-sm outline-none"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="sethtrades"
@@ -72,9 +72,9 @@ export function SignupForm() {
             </label>
 
             <label className="grid gap-1">
-              <span className="text-xs font-medium text-neutral-600">Email (optional)</span>
+              <span className="text-xs font-medium text-[color:var(--muted)]">Email (optional)</span>
               <input
-                className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none"
+                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] px-4 py-3 text-sm outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@email.com"
@@ -82,9 +82,9 @@ export function SignupForm() {
             </label>
 
             <label className="grid gap-1">
-              <span className="text-xs font-medium text-neutral-600">Password</span>
+              <span className="text-xs font-medium text-[color:var(--muted)]">Password</span>
               <input
-                className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none"
+                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] px-4 py-3 text-sm outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
@@ -93,7 +93,7 @@ export function SignupForm() {
               />
             </label>
 
-            {error ? <div className="text-sm text-red-600">{error}</div> : null}
+            {error ? <div className="text-sm text-rose-500">{error}</div> : null}
 
             <div className="mt-2">
               <Button type="submit" className="w-full">
@@ -102,7 +102,7 @@ export function SignupForm() {
             </div>
           </form>
 
-          <div className="text-xs text-neutral-600">
+          <div className="text-xs text-[color:var(--muted)]">
             Already have an account?{' '}
             <Link className="underline underline-offset-4" href="/login">
               Log in

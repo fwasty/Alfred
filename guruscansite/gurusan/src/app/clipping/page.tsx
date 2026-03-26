@@ -9,7 +9,7 @@ export default function ClippingPage() {
     <Shell>
       <div>
         <h1 className="text-4xl font-semibold tracking-tight">Clipping</h1>
-        <p className="mt-2 text-sm text-neutral-600">
+        <p className="mt-2 text-sm text-[color:var(--muted)]">
           Top clipping-style offers on Whop (ranked by rating + review volume).
         </p>
 
@@ -17,7 +17,7 @@ export default function ClippingPage() {
           {top.map((c) => (
             <TopCourseCard key={c.id} c={c} />
           ))}
-          {!top.length ? <div className="text-sm text-neutral-600">No clipping offers found yet.</div> : null}
+          {!top.length ? <div className="text-sm text-[color:var(--muted)]">No clipping offers found yet.</div> : null}
         </div>
       </div>
     </Shell>

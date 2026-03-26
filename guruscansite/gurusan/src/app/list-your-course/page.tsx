@@ -7,13 +7,13 @@ export default function ListYourCoursePage() {
     <Shell>
       <div className="mx-auto max-w-2xl">
         <h1 className="text-4xl font-semibold tracking-tight">Don’t see your course listed?</h1>
-        <p className="mt-3 text-neutral-700">
+        <p className="mt-3 text-[color:var(--muted)]">
           Listings are free. We pull public Whop signals (rating + count + product tiles) and link back to Whop for full reviews.
         </p>
 
         <Card className="mt-6">
           <div className="text-sm font-semibold">How to get listed</div>
-          <ol className="mt-3 list-decimal pl-5 text-sm text-neutral-700 space-y-2">
+          <ol className="mt-3 list-decimal pl-5 text-sm text-[color:var(--muted)] space-y-2">
             <li>Send the Whop URL (your main store/community page).</li>
             <li>We ingest the public data and your listing appears in the directory.</li>
             <li>To leave reviews or claim/verify, create an account.</li>
@@ -33,7 +33,7 @@ export default function ListYourCoursePage() {
             </Link>
           </div>
 
-          <div className="mt-6 text-xs text-neutral-500">
+          <div className="mt-6 text-xs text-[color:var(--muted-2)]">
             Monetization idea (later): verified/claimed profiles + featured placements clearly labeled (not pay-to-rank).
           </div>
         </Card>

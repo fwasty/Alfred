@@ -39,7 +39,7 @@ export function SearchHero({ items }: { items: Item[] }) {
         </div>
       </div>
       {results.length ? (
-        <div className="absolute left-0 right-0 top-full mt-1 z-30 overflow-hidden rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-lg backdrop-blur-xl">
+        <div className="absolute left-0 right-0 top-full mt-1 z-50 max-h-[60vh] overflow-y-auto rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-lg backdrop-blur-xl">
           {results.map((r) => (
             <Link
               key={r.key}
