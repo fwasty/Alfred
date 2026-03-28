@@ -10,6 +10,23 @@ import { getGuruByHandle, listCoursesForGuru, getWhopAggregateForGuru } from '@/
 import { getSessionUserId } from '@/lib/auth'
 import { pickCreatorAt } from '@/lib/handles'
 
+export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }) {
+  const { handle } = await params
+  const guru = getGuruByHandle(handle)
+  if (!guru) return { title: 'Not Found' }
+  const name = guru.creator_name?.trim() || guru.handle || guru.name
+  const rating = guru.whop_rating != null ? `${guru.whop_rating.toFixed(1)}★` : ''
+  return {
+    title: `${name} ${rating} — Reviews & Rating`,
+    description: guru.bio || `See reviews, ratings, and courses for ${name} on Guru Scan.`,
+    openGraph: {
+      title: `${name} — Guru Scan`,
+      description: guru.bio || `Reviews and ratings for ${name}`,
+      images: guru.image_url ? [{ url: guru.image_url }] : undefined,
+    },
+  }
+}
+
 export default async function GuruPage({ params }: { params: Promise<{ handle: string }> }) {
   const { handle } = await params
   let guru = getGuruByHandle(handle)
