@@ -58,7 +58,7 @@ function Row({
   return (
     <Link
       href={href}
-      className={`grid grid-cols-[40px_36px_1fr_96px] items-center gap-3 rounded-xl px-3 py-2.5 transition sm:grid-cols-[48px_44px_1fr_130px] sm:gap-4 ${rowClass}`}
+      className={`grid grid-cols-[36px_32px_1fr_80px] items-center gap-2 rounded-xl px-2 py-2.5 transition sm:grid-cols-[48px_44px_1fr_130px] sm:gap-4 sm:px-3 ${rowClass}`}
     >
       <div className="flex items-center gap-1">
         <div className="text-xs font-semibold w-6 text-[color:var(--muted)]">{n}</div>

@@ -33,12 +33,12 @@ export function RatingBlock({
   return (
     <div
       title={title}
-      className={cn('flex items-center gap-2.5 rounded-xl px-2.5 py-1.5 shadow-sm', bg, className)}
+      className={cn('flex items-center gap-2 rounded-xl px-2 py-1.5 shadow-sm overflow-hidden', bg, className)}
     >
-      <div className={cn('text-lg font-bold leading-none', scoreFg)}>{val}</div>
-      <div className="leading-tight">
+      <div className={cn('text-lg font-bold leading-none shrink-0', scoreFg)}>{val}</div>
+      <div className="leading-tight min-w-0">
         <div className={cn('text-[11px] font-bold tracking-wide', labelFg)}>{label}</div>
-        <div className={cn('text-[10px]', subFg)}>
+        <div className={cn('text-[10px] truncate', subFg)}>
           {count != null && count > 0 ? `${count.toLocaleString()} reviews` : 'no data'}
         </div>
       </div>

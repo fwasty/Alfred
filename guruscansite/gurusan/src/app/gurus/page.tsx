@@ -66,7 +66,7 @@ export default async function GurusPage({
       <div className="grid gap-8">
 
         {/* Header */}
-        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 sm:p-8">
+        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 sm:p-8 overflow-hidden">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-[color:var(--text)] md:text-4xl">Browse Gurus</h1>
@@ -80,7 +80,7 @@ export default async function GurusPage({
           </div>
 
           {/* Category filter */}
-          <div className="mt-5 flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-1">
+          <div className="mt-5 flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-2 -mx-1 px-1">
             {CATEGORIES.map((c) => (
               <Link
                 key={c}

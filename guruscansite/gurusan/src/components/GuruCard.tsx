@@ -36,9 +36,9 @@ export function GuruCard({ guru }: { guru: DbGuru }) {
       </div>
 
       {/* Ratings */}
-      <div className="flex gap-2 px-3 py-3">
-        <RatingBlock rating={guru.whop_rating} count={guru.whop_reviews_count} label="WHOP" className="flex-1" />
-        <RatingBlock rating={guru.guru_rating} count={guru.guru_reviews_count} label="GURU" className="flex-1" />
+      <div className="flex gap-2 px-3 py-3 overflow-hidden">
+        <RatingBlock rating={guru.whop_rating} count={guru.whop_reviews_count} label="WHOP" className="flex-1 min-w-0" />
+        <RatingBlock rating={guru.guru_rating} count={guru.guru_reviews_count} label="GURU" className="flex-1 min-w-0" />
       </div>
 
       {/* Bio + CTA */}
