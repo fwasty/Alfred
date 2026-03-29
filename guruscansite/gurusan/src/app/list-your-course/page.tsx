@@ -6,7 +6,7 @@ export default function ListYourCoursePage() {
   return (
     <Shell>
       <div className="mx-auto max-w-2xl">
-        <h1 className="text-4xl font-semibold tracking-tight">Don’t see your course listed?</h1>
+        <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-[color:var(--text)]">Don't see your course listed?</h1>
         <p className="mt-3 text-[color:var(--muted)]">
           Listings are free. We pull public Whop signals (rating + count + product tiles) and link back to Whop for full reviews.
         </p>

@@ -69,7 +69,7 @@ export default async function GurusPage({
         <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 sm:p-8 overflow-hidden">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[color:var(--text)] md:text-4xl">Browse Gurus</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-[color:var(--text)] sm:text-3xl md:text-4xl">Browse Gurus</h1>
               <p className="mt-2 text-sm text-[color:var(--muted)]">
                 {totalGurus.toLocaleString()} creators indexed from Whop. Filter by category, sorted by review count.
               </p>

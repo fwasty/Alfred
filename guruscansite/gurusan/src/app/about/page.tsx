@@ -9,7 +9,7 @@ export default function AboutPage() {
       <div className="grid gap-10">
         <header className="grid gap-3">
           <div className="text-xs font-semibold tracking-wide text-[color:var(--muted)]">ABOUT</div>
-          <h1 className="text-4xl font-semibold tracking-tight">Why Guru Scan exists</h1>
+          <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-[color:var(--text)]">Why Guru Scan exists</h1>
           <p className="max-w-3xl text-sm text-[color:var(--muted)]">
             The internet is full of “gurus”. Some are legit. Most are noise. Guru Scan is being built to make the market
             for creator products more transparent: one profile per creator, every offer in one place, and ratings that are

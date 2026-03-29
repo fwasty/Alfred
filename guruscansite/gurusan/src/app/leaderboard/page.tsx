@@ -129,7 +129,7 @@ export default async function LeaderboardPage({
     <Shell>
       <div className="grid gap-10">
         <div>
-          <h1 className="text-4xl font-semibold tracking-tight text-[color:var(--text)]">Leaderboard</h1>
+          <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-[color:var(--text)]">Leaderboard</h1>
           <p className="mt-2 text-sm text-[color:var(--muted)]">
             Best of the best. Top creators, courses, and clipping offers ranked by reviews.
           </p>
