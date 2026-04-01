@@ -231,8 +231,8 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                     <Button className="w-full">Write a review ↓</Button>
                   </a>
                 )}
-                <Link href={`/signup?next=/gurus/${guru.handle ?? ''}`}>
-                  <Button variant="ghost" className="w-full">Verify / claim this profile</Button>
+                <Link href={`/creators/${guru.handle ?? ''}`}>
+                  <Button variant="ghost" className="w-full">View full creator profile</Button>
                 </Link>
               </div>
             </div>
