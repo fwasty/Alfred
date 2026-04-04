@@ -26,8 +26,8 @@
     radial-gradient(ellipse 100% 50% at 50% 100%, rgba(16, 185, 129, 0.14), transparent 50%),
     radial-gradient(ellipse 80% 40% at 90% 80%, rgba(236, 72, 153, 0.10), transparent 45%),
     linear-gradient(180deg, #f5f0ff 0%, #fdf8ff 15%, #faf8ff 30%, #f8faff 50%, #f8fdfb 70%, #faf5ff 85%, #f8fdf8 100%);
-  --surface: rgba(255, 253, 255, 0.85);
-  --surface-2: rgba(248, 245, 255, 0.75);
+  --surface: rgba(255, 253, 255, 0.80);
+  --surface-2: rgba(248, 245, 255, 0.45);
   --border: rgba(0, 0, 0, 0.06);
   --text: #0f172a;
   --muted: rgba(15, 23, 42, 0.58);

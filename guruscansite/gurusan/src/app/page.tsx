@@ -226,7 +226,7 @@ export default async function Home({
             </div>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
+          <div className="-mx-4 overflow-hidden bg-transparent px-0 py-4 sm:mx-0 sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {trending.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
@@ -242,7 +242,7 @@ export default async function Home({
             </div>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
+          <div className="-mx-4 overflow-hidden bg-transparent px-0 py-4 sm:mx-0 sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topCourses.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
@@ -261,7 +261,7 @@ export default async function Home({
             </Link>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
+          <div className="-mx-4 overflow-hidden bg-transparent px-0 py-4 sm:mx-0 sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topFree.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
@@ -280,7 +280,7 @@ export default async function Home({
             </Link>
           </div>
 
-          <div className="-mx-4 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--surface-2)] px-0 py-4 sm:mx-0 sm:rounded-2xl sm:border sm:p-4">
+          <div className="-mx-4 overflow-hidden bg-transparent px-0 py-4 sm:mx-0 sm:p-4">
             <CourseCarousel innerClassName="px-4 sm:px-3">
               {topClipping.map((c) => (
                 <TopCourseCard key={c.id} c={c} />
