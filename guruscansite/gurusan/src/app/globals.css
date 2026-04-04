@@ -19,13 +19,15 @@
 /* Theme 1: Paper — warm pastel depth with color */
 :root[data-theme='paper'] {
   --page-bg: 
-    radial-gradient(ellipse 100% 70% at 5% -5%, rgba(139, 92, 246, 0.25), transparent 50%),
-    radial-gradient(ellipse 80% 60% at 98% 10%, rgba(236, 72, 153, 0.18), transparent 45%),
-    radial-gradient(ellipse 90% 70% at 50% 105%, rgba(16, 185, 129, 0.15), transparent 50%),
-    radial-gradient(ellipse 70% 50% at 25% 55%, rgba(59, 130, 246, 0.10), transparent 45%),
-    linear-gradient(180deg, #f5f0ff 0%, #fff8fc 25%, #ffffff 50%, #f0f8ff 75%, #f8fdf8 100%);
-  --surface: rgba(255, 255, 255, 0.88);
-  --surface-2: rgba(248, 247, 255, 0.82);
+    radial-gradient(ellipse 100% 50% at 5% 0%, rgba(139, 92, 246, 0.22), transparent 50%),
+    radial-gradient(ellipse 80% 40% at 98% 5%, rgba(236, 72, 153, 0.16), transparent 45%),
+    radial-gradient(ellipse 100% 50% at 80% 50%, rgba(139, 92, 246, 0.10), transparent 50%),
+    radial-gradient(ellipse 90% 40% at 10% 60%, rgba(59, 130, 246, 0.10), transparent 45%),
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(16, 185, 129, 0.14), transparent 50%),
+    radial-gradient(ellipse 80% 40% at 90% 80%, rgba(236, 72, 153, 0.10), transparent 45%),
+    linear-gradient(180deg, #f5f0ff 0%, #fdf8ff 15%, #faf8ff 30%, #f8faff 50%, #f8fdfb 70%, #faf5ff 85%, #f8fdf8 100%);
+  --surface: rgba(255, 253, 255, 0.85);
+  --surface-2: rgba(248, 245, 255, 0.75);
   --border: rgba(0, 0, 0, 0.06);
   --text: #0f172a;
   --muted: rgba(15, 23, 42, 0.58);
