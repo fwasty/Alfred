@@ -91,7 +91,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
             <img
               src={guru.image_url || 'https://api.dicebear.com/9.x/identicon/svg?seed=default'}
               alt={displayName}
-              className="size-14 shrink-0 rounded-3xl border border-[color:var(--border)] bg-white object-cover object-top sm:size-16"
+              className="size-14 shrink-0 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] object-cover object-top sm:size-16"
             />
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-3">
@@ -112,15 +112,15 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
 
               <div className="mt-3 flex flex-wrap gap-2">
                 <span title="Category is inferred from the Whop listing / seed data.">
-                  <Badge className="bg-white">Category: {guru.category}</Badge>
+                  <Badge className="bg-[color:var(--surface)]">Category: {guru.category}</Badge>
                 </span>
                 <span title="Review volume tier, based on total Whop reviews across offers.">
-                  <Badge className="bg-white">
+                  <Badge className="bg-[color:var(--surface)]">
                     Whop reviews: {whopAgg.total_reviews >= 1000 ? '1k+' : whopAgg.total_reviews >= 500 ? '500+' : whopAgg.total_reviews >= 100 ? '100+' : whopAgg.total_reviews >= 50 ? '50+' : whopAgg.total_reviews > 0 ? '<50' : '-'}
                   </Badge>
                 </span>
                 <span title="We show Whop rating separately from Guru Scan rating.">
-                  <Badge className="bg-white">Two-score system</Badge>
+                  <Badge className="bg-[color:var(--surface)]">Two-score system</Badge>
                 </span>
               </div>
             </div>

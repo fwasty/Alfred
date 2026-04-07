@@ -15,49 +15,8 @@ export default async function GurusPage({
   const catRaw = typeof sp?.cat === 'string' ? sp.cat : 'All'
   const cat = (CATEGORIES as readonly string[]).includes(catRaw) ? catRaw : 'All'
 
-  let gurus = listGurus({ category: cat === 'All' ? null : cat })
-
-  // Auto-sync a few missing Whop profiles
-  try {
-    const { ingestWhopCompanyFromPublicUrl } = await import('@/lib/whop')
-    const { updateGuruFromWhop, upsertCourseFromWhop } = await import('@/lib/db')
-
-    let synced = 0
-    for (const g of gurus) {
-      if (synced >= 3) break
-      if (!g.whop_url) continue
-      if (g.whop_synced_at) continue
-      const ingest = await ingestWhopCompanyFromPublicUrl(g.whop_url)
-      updateGuruFromWhop(g.handle || '', {
-        whop_url: ingest.whop_url,
-        whop_route: ingest.route,
-        title: ingest.title,
-        bio: ingest.creator_pitch,
-        image_url: ingest.logo_url,
-        whop_rating: ingest.reviews_average,
-        whop_reviews_count: ingest.published_reviews_count,
-        whop_star_counts: ingest.review_counts,
-        whop_synced_at: Date.now(),
-      })
-      for (const ap of ingest.access_passes) {
-        upsertCourseFromWhop(g.id, {
-          whop_url: ap.product_id ? `https://whop.com/${ap.whop_route || ingest.route || ''}/` : null,
-          name: ap.title || ap.headline || ap.product_id,
-          image_url: ap.image_url,
-          price_cents: ap.initial_price_due_cents,
-          whop_rating: ap.reviews_average,
-          whop_reviews_count: ap.published_reviews_count,
-          whop_star_counts: ap.review_counts,
-          summary: ap.summary,
-          whop_synced_at: Date.now(),
-        })
-      }
-      synced++
-    }
-    if (synced) gurus = listGurus()
-  } catch {
-    // ignore
-  }
+  const gurus = listGurus({ category: cat === 'All' ? null : cat })
+  // Data synced nightly via cron — no live Whop fetching on page load
 
   const totalGurus = (db.prepare("SELECT COUNT(*) as c FROM gurus WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
 

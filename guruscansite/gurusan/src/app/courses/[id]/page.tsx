@@ -32,7 +32,7 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
   if (!row) {
     return (
       <Shell>
-        <div className="text-sm text-neutral-700">Course not found.</div>
+        <div className="text-sm text-[color:var(--muted)]">Course not found.</div>
       </Shell>
     )
   }
@@ -89,7 +89,7 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
               <img
                 src={row.creator_image_url || row.image_url || `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(creatorName)}`}
                 alt={creatorName}
-                className="size-8 rounded-lg border border-[color:var(--border)] bg-white object-cover"
+                className="size-8 rounded-lg border border-[color:var(--border)] bg-[color:var(--surface)] object-cover"
               />
               <div>
                 Creator:{' '}
@@ -130,9 +130,9 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
           ) : null}
 
           <div className="mt-8 grid gap-4">
-            <div className="rounded-2xl border border-black/10 bg-white/70 p-4">
+            <div className="rounded-2xl border border-[color:var(--border)] bg-white/70 p-4">
               <div className="text-sm font-semibold">Guru Scan reviews</div>
-              <div className="mt-1 text-sm text-neutral-700">
+              <div className="mt-1 text-sm text-[color:var(--muted)]">
                 {agg?.n ? (
                   <>
                     <span className="font-semibold">{Number(agg.avg).toFixed(2)}</span> avg •{' '}
@@ -147,9 +147,9 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
             {userId ? (
               <CourseReviewForm courseId={id} />
             ) : (
-              <div className="rounded-3xl border border-black/10 bg-white/70 p-5">
+              <div className="rounded-3xl border border-[color:var(--border)] bg-white/70 p-5">
                 <div className="text-sm font-semibold">Write a review</div>
-                <div className="mt-2 text-sm text-neutral-700">
+                <div className="mt-2 text-sm text-[color:var(--muted)]">
                   You’ll need a Guru Scan account to post a review (you can choose to post anonymously).
                 </div>
                 <div className="mt-4">
@@ -163,27 +163,27 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
               </div>
             )}
 
-            <div className="rounded-3xl border border-black/10 bg-white/70 p-5">
+            <div className="rounded-3xl border border-[color:var(--border)] bg-white/70 p-5">
               <div className="text-sm font-semibold">Reviews</div>
               <div className="mt-4 grid gap-4">
                 {reviews.map((r) => (
-                  <div key={r.id} className="rounded-2xl border border-black/10 bg-white p-4">
+                  <div key={r.id} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4">
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
                       <div className="text-sm font-semibold">
                         {r.title ? r.title : 'Review'}
-                        <span className="ml-2 text-xs font-medium text-neutral-600">
+                        <span className="ml-2 text-xs font-medium text-[color:var(--muted)]">
                           {r.anonymous ? 'Anonymous' : `@${r.username}`}
                         </span>
                       </div>
                       <div className="text-sm font-semibold">{Number(r.rating).toFixed(1)} / 5</div>
                     </div>
                     <div className="mt-2 text-sm text-neutral-800 whitespace-pre-wrap">{r.body}</div>
-                    <div className="mt-3 text-[11px] text-neutral-600">
+                    <div className="mt-3 text-[11px] text-[color:var(--muted)]">
                       {new Date(r.created_at).toLocaleDateString()}
                     </div>
                   </div>
                 ))}
-                {!reviews.length ? <div className="text-sm text-neutral-700">No reviews yet.</div> : null}
+                {!reviews.length ? <div className="text-sm text-[color:var(--muted)]">No reviews yet.</div> : null}
               </div>
             </div>
           </div>

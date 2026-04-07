@@ -26,7 +26,7 @@ export default function AboutPage() {
 
           <div className="mt-4 flex flex-wrap gap-2">
             <a
-              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-white"
+              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-[color:var(--surface)]"
               href="https://x.com/fwasty"
               target="_blank"
               rel="noreferrer"
@@ -34,7 +34,7 @@ export default function AboutPage() {
               X / @fwasty
             </a>
             <a
-              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-white"
+              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-[color:var(--surface)]"
               href="https://www.instagram.com/sethlum/"
               target="_blank"
               rel="noreferrer"
@@ -42,7 +42,7 @@ export default function AboutPage() {
               Instagram / @sethlum
             </a>
             <a
-              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-white"
+              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-[color:var(--surface)]"
               href="https://www.tiktok.com/@sethlumx"
               target="_blank"
               rel="noreferrer"
@@ -50,7 +50,7 @@ export default function AboutPage() {
               TikTok / @sethlumx
             </a>
             <a
-              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-white"
+              className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-1 text-xs font-medium hover:bg-[color:var(--surface)]"
               href="https://www.youtube.com/@sethlum"
               target="_blank"
               rel="noreferrer"
