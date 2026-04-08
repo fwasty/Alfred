@@ -6,6 +6,8 @@ import { VerifiedBadge } from '@/components/VerifiedBadge'
 import { RatingDistribution } from '@/components/RatingDistribution'
 import { GuruReviewForm } from '@/components/GuruReviewForm'
 import { GuruReviewList } from '@/components/GuruReviewList'
+import { JsonLd, guruJsonLd } from '@/components/JsonLd'
+import { ShareButtons } from '@/components/ShareButtons'
 import { getGuruByHandle, listCoursesForGuru, getWhopAggregateForGuru } from '@/lib/db'
 import { getSessionUserId } from '@/lib/auth'
 import { pickCreatorAt } from '@/lib/handles'
@@ -85,6 +87,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
 
   return (
     <Shell>
+      <JsonLd data={guruJsonLd(guru)} />
       <div className="grid gap-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-4">
@@ -125,7 +128,8 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
               </div>
             </div>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2">
+            <ShareButtons name={displayName} handle={guru.handle || ''} />
             <Link href="/gurus">
               <Button variant="ghost">Back</Button>
             </Link>
@@ -189,6 +193,11 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
             <div className="mt-2 text-sm text-[color:var(--muted)]">
               Ratings and review counts are sourced from public Whop pages. Review text stays on Whop.
             </div>
+            {guru.whop_synced_at ? (
+              <div className="mt-2 text-[10px] text-[color:var(--muted-2)]">
+                Last synced: {new Date(guru.whop_synced_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </div>
+            ) : null}
 
             {guru.whop_url ? (
               <div className="mt-4 text-sm">

@@ -5,6 +5,7 @@ import { getSessionUserId } from '@/lib/auth'
 import { db } from '@/lib/sqlite'
 import { AuthNav } from '@/components/AuthNav'
 import { ThemeToggle } from '@/components/ThemeClient'
+import { BackToTop } from '@/components/BackToTop'
 // DebugHud removed
 
 export async function Shell({
@@ -94,6 +95,8 @@ export async function Shell({
         >
           {children}
         </div>
+
+        <BackToTop />
 
         {/* floating quick-action bubble */}
         <Link
