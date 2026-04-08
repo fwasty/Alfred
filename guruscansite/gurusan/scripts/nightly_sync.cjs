@@ -196,6 +196,20 @@ async function main() {
   }
 
   console.log(`[nightly_sync] Done — ${synced} synced, ${failed} failed, ${gurus.length - synced - failed} skipped`)
+
+  // Take daily snapshot for trending
+  const today = new Date().toISOString().slice(0, 10)
+  try {
+    db.exec(`CREATE TABLE IF NOT EXISTS guru_snapshots (id TEXT PRIMARY KEY, guru_id TEXT NOT NULL, whop_rating REAL, whop_reviews_count INTEGER, snapshot_date TEXT NOT NULL, created_at INTEGER NOT NULL, UNIQUE(guru_id, snapshot_date))`)
+    const allGurus = db.prepare('SELECT id, whop_rating, whop_reviews_count FROM gurus WHERE COALESCE(hidden,0)=0 AND whop_reviews_count > 0').all()
+    const ins = db.prepare('INSERT OR IGNORE INTO guru_snapshots (id, guru_id, whop_rating, whop_reviews_count, snapshot_date, created_at) VALUES (?, ?, ?, ?, ?, ?)')
+    let snapped = 0
+    for (const g of allGurus) {
+      ins.run(require('crypto').randomBytes(16).toString('hex'), g.id, g.whop_rating, g.whop_reviews_count, today, Date.now())
+      snapped++
+    }
+    console.log(`[nightly_sync] Snapshot: ${snapped} gurus for ${today}`)
+  } catch (e) { console.log('[nightly_sync] Snapshot error:', e.message) }
 }
 
 main().catch(err => {

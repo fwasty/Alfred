@@ -89,3 +89,38 @@ export function listTopClippingCoursesWeek(limit = 8): CourseWithGuru[] {
     50
   )
 }
+
+export function listRecentlyGrowingCourses(limit = 10): CourseWithGuru[] {
+  // Find courses that gained the most reviews in the last 7 days
+  // Falls back to regular trending if no snapshot data yet
+  const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
+  
+  try {
+    const sql = `
+      SELECT c.*, g.name as guru_name, g.handle as guru_handle, g.image_url as guru_image_url, g.whop_url as guru_whop_url,
+             (COALESCE(g.whop_reviews_count, 0) - COALESCE(s.whop_reviews_count, 0)) as review_growth
+      FROM gurus g
+      JOIN courses c ON c.guru_id = g.id
+      LEFT JOIN guru_snapshots s ON s.guru_id = g.id AND s.snapshot_date = ?
+      WHERE COALESCE(g.hidden,0)=0 AND COALESCE(c.hidden,0)=0
+        AND c.whop_rating IS NOT NULL
+        AND COALESCE(c.whop_reviews_count, 0) >= 10
+      ORDER BY review_growth DESC, COALESCE(c.whop_reviews_count, 0) DESC
+      LIMIT ?
+    `
+    const rows = db.prepare(sql).all(weekAgo, limit * 3) as (CourseWithGuru & { review_growth: number })[]
+    
+    // Dedupe by guru
+    const seen = new Set<string>()
+    const out: CourseWithGuru[] = []
+    for (const r of rows) {
+      if (seen.has(r.guru_id)) continue
+      seen.add(r.guru_id)
+      out.push(r)
+      if (out.length >= limit) break
+    }
+    return out
+  } catch {
+    return listTrendingCourses(limit)
+  }
+}
