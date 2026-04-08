@@ -76,6 +76,12 @@ export async function Shell({
                 >
                   About
                 </Link>
+                <Link
+                  className="rounded-full px-2 py-1.5 transition hover:bg-[color:var(--surface-2)] hover:text-[color:var(--text)] sm:px-3 sm:py-2"
+                  href="/claim"
+                >
+                  Claim
+                </Link>
               </nav>
 
               <div className="hidden sm:flex sm:items-center sm:gap-2">
