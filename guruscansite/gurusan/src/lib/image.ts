@@ -3,11 +3,15 @@ export function isBannedImageUrl(url?: string | null) {
   const u = String(url).trim()
   if (!u) return true
 
+  // Animated GIFs look terrible as profile images
+  if (u.includes('.gif')) return true
+
   // Known bad/pointless placeholders
   if (u.includes('unavatar.io/instagram')) return true
   if (u.includes('picsum.photos')) return true
+  if (u.includes('favicon.ico')) return true
 
-  // People sometimes paste generic instagram links as “image” by mistake
+  // People sometimes paste generic instagram links as "image" by mistake
   if (/^https?:\/\/(www\.)?instagram\.com\//i.test(u)) return true
 
   // Whop pages that often produce banner/preview screenshots (text-y) when used as images
