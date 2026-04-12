@@ -108,13 +108,7 @@ export function listGurus(opts?: { category?: string | null }): DbGuru[] {
     WHERE COALESCE(g.hidden,0)=0
       AND (
         ? IS NULL
-        OR EXISTS (
-          SELECT 1
-          FROM courses cc
-          WHERE cc.guru_id = g.id
-            AND COALESCE(cc.hidden,0)=0
-            AND COALESCE(cc.category,'Other') = ?
-        )
+        OR g.category = ?
       )
     ORDER BY COALESCE(g.whop_reviews_count,0) DESC, COALESCE(g.whop_rating,0) DESC, g.created_at DESC
     LIMIT 500
