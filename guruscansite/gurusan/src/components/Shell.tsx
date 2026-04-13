@@ -33,7 +33,7 @@ export async function Shell({
       <div className={cn(lockScroll ? 'flex h-dvh flex-col overflow-hidden' : 'min-h-dvh')}>
         <header
           className={cn(
-            'sticky top-0 z-50 backdrop-blur-xl backdrop-saturate-150',
+            'fixed top-0 left-0 right-0 z-50 backdrop-blur-xl backdrop-saturate-150',
             'bg-[color:var(--nav-bg)]'
           )}
           style={{ borderBottom: '1px solid var(--border)' }}
@@ -94,7 +94,7 @@ export async function Shell({
 
         <div
           className={cn(
-            'mx-auto w-[min(1720px,calc(100vw-24px))] px-4 py-6 sm:w-[min(1720px,calc(100vw-48px))] sm:px-6 sm:py-10',
+            'mx-auto w-[min(1720px,calc(100vw-24px))] px-4 pt-20 pb-6 sm:w-[min(1720px,calc(100vw-48px))] sm:px-6 sm:pt-24 sm:pb-10',
             lockScroll ? 'flex-1 overflow-hidden' : '',
             contentClassName
           )}
