@@ -92,7 +92,7 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-4">
             <img
-              src={guru.image_url || `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(guru.handle || guru.name)}`}
+              src={guru.image_url || `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(guru.handle || guru.name)}`}
               alt={displayName}
               className="size-14 shrink-0 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] object-cover object-top sm:size-16"
             />

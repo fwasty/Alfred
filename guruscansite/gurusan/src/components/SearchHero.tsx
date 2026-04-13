@@ -81,7 +81,7 @@ export function SearchHero({ items }: { items: Item[] }) {
                 {results.map((r) => (
                   <Link key={r.key} href={r.href} onClick={handleSelect}
                     className="flex items-center gap-3 px-4 py-3 text-sm text-[color:var(--text)] active:bg-[color:var(--surface-2)] border-b border-[color:var(--border)] last:border-0">
-                    <img src={r.image_url || `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(r.key)}`}
+                    <img src={r.image_url || `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(r.key)}`}
                       alt={r.name} className="size-10 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-2)] object-cover shrink-0" />
                     <div className="min-w-0">
                       <div className="truncate font-medium">{r.name}</div>
@@ -98,7 +98,7 @@ export function SearchHero({ items }: { items: Item[] }) {
             {results.map((r) => (
               <Link key={r.key} href={r.href} onClick={handleSelect}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-[color:var(--text)] hover:bg-[color:var(--surface-2)] transition">
-                <img src={r.image_url || `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(r.key)}`}
+                <img src={r.image_url || `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(r.key)}`}
                   alt={r.name} className="size-8 rounded-lg border border-[color:var(--border)] bg-[color:var(--surface-2)] object-cover shrink-0" />
                 <div className="min-w-0">
                   <div className="truncate font-medium">{r.name}</div>

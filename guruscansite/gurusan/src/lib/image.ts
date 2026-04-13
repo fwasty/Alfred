@@ -36,5 +36,5 @@ export function pickImageUrl({
   for (const c of candidates) {
     if (!isBannedImageUrl(c)) return c as string
   }
-  return `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(seed)}`
+  return `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(seed)}&backgroundColor=6d28d9,059669,0891b2,d97706,dc2626,2563eb,7c3aed&backgroundType=gradientLinear&fontFamily=Arial&fontSize=40`
 }

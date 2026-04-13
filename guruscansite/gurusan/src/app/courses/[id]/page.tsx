@@ -87,7 +87,7 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
           {creatorName ? (
             <div className="mt-2 flex items-center gap-3 text-sm text-[color:var(--muted)]">
               <img
-                src={row.creator_image_url || row.image_url || `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(creatorName)}`}
+                src={row.creator_image_url || row.image_url || `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(creatorName)}`}
                 alt={creatorName}
                 className="size-8 rounded-lg border border-[color:var(--border)] bg-[color:var(--surface)] object-cover"
               />
