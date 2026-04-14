@@ -4,6 +4,7 @@ import { listTopClippingCoursesWeek, listTopCoursesWeek, listTopCoursesWeekByCat
 import { listTopGurusGeneral, listTopGurusGeneralByCategory } from '@/lib/leaderboard'
 import { listTopFreeCourses } from '@/lib/free'
 import { pickImageUrl } from '@/lib/image'
+import { db } from '@/lib/sqlite'
 
 function ratingColor(rating: number | null) {
   if (rating == null) return { bg: 'bg-neutral-500/20', fg: 'text-[color:var(--muted)]' }
@@ -26,6 +27,8 @@ function Row({
   sub,
   whopRating,
   whopReviews,
+  guruRating,
+  guruReviews,
   href,
   imageUrl,
   imageSeed,
@@ -35,6 +38,8 @@ function Row({
   sub: string
   whopRating: number | null
   whopReviews: number | null
+  guruRating?: number | null
+  guruReviews?: number | null
   href: string
   imageUrl?: string | null
   imageSeed?: string
@@ -82,12 +87,22 @@ function Row({
         <div className="truncate text-xs text-[color:var(--muted)]">{sub}</div>
       </div>
 
-      <div className="justify-self-end text-right">
-        <div className={`inline-flex items-center justify-center rounded-lg px-2.5 py-1 text-sm font-semibold ${rc.bg} ${rc.fg}`}>
-          {whopRating != null ? whopRating.toFixed(2) : '—'}
-        </div>
-        <div className="mt-1 text-[11px] text-[color:var(--muted-2)]">
-          {whopReviews != null ? `${whopReviews.toLocaleString()} reviews` : 'no data'}
+      <div className="justify-self-end text-right flex items-center gap-2">
+        {guruRating != null && guruReviews && guruReviews > 0 && (
+          <div>
+            <div className="inline-flex items-center justify-center rounded-lg bg-violet-100 px-2 py-1 text-sm font-semibold text-violet-800">
+              {guruRating.toFixed(1)}
+            </div>
+            <div className="mt-0.5 text-[10px] text-violet-500">{guruReviews} GS</div>
+          </div>
+        )}
+        <div>
+          <div className={`inline-flex items-center justify-center rounded-lg px-2.5 py-1 text-sm font-semibold ${rc.bg} ${rc.fg}`}>
+            {whopRating != null ? whopRating.toFixed(2) : '—'}
+          </div>
+          <div className="mt-0.5 text-[10px] text-[color:var(--muted-2)]">
+            {whopReviews != null ? `${whopReviews.toLocaleString()} Whop` : 'no data'}
+          </div>
         </div>
       </div>
     </Link>
@@ -125,6 +140,17 @@ export default async function LeaderboardPage({
   const topFreeCourses = listTopFreeCourses(25)
   const topCoursesClipping = listTopClippingCoursesWeek(25)
 
+  // Guru Scan top rated (by community reviews)
+  const topByGuruRating = db.prepare(`
+    SELECT g.id as guru_id, g.name as guru_name, g.handle as guru_handle, g.whop_url as guru_whop_url,
+           g.image_url, g.guru_rating as avg_rating, g.guru_reviews_count as total_reviews,
+           g.whop_rating, g.whop_reviews_count, g.brand_name
+    FROM gurus g
+    WHERE COALESCE(g.hidden,0)=0 AND g.guru_rating IS NOT NULL AND g.guru_reviews_count > 0
+    ORDER BY g.guru_rating DESC, g.guru_reviews_count DESC
+    LIMIT 25
+  `).all() as any[]
+
   return (
     <Shell>
       <div className="grid gap-10">
@@ -135,9 +161,37 @@ export default async function LeaderboardPage({
           </p>
         </div>
 
+        {topByGuruRating.length > 0 && (
+          <section className="grid gap-3">
+            <div className="flex items-end justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-[color:var(--text)]">💬 Guru Scan Top Rated</h2>
+                <p className="mt-1 text-xs text-[color:var(--muted)]">Ranked by community reviews on Guru Scan — the rating that matters.</p>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-violet-500/15 bg-violet-500/5 p-2">
+              {topByGuruRating.map((g: any, i: number) => (
+                <Row
+                  key={g.guru_id}
+                  n={i + 1}
+                  name={g.guru_name}
+                  sub={g.brand_name && g.brand_name.toLowerCase() !== g.guru_name.toLowerCase() ? g.brand_name : `@${g.guru_handle}`}
+                  whopRating={g.whop_rating}
+                  whopReviews={g.whop_reviews_count}
+                  guruRating={g.avg_rating}
+                  guruReviews={g.total_reviews}
+                  href={`/gurus/${g.guru_handle}`}
+                  imageUrl={g.image_url}
+                  imageSeed={g.guru_handle}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="grid gap-3">
           <div className="flex items-end justify-between">
-            <h2 className="text-xl font-semibold text-[color:var(--text)]">🏆 Gurus — Top 25</h2>
+            <h2 className="text-xl font-semibold text-[color:var(--text)]">🏆 Gurus — Top 25 (Whop)</h2>
             <div className="text-xs text-[color:var(--muted)]">Overall (combined)</div>
           </div>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-2">

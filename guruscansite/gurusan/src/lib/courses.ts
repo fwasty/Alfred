@@ -6,6 +6,9 @@ export type CourseWithGuru = DbCourse & {
   guru_handle: string
   guru_image_url: string | null
   guru_whop_url: string | null
+  guru_rating: number | null
+  guru_reviews_count: number | null
+  guru_id: string
 }
 
 function listTopCoursesByWhere(whereSql: string, params: any[], limit = 8, minReviews = 100): CourseWithGuru[] {
@@ -14,7 +17,7 @@ function listTopCoursesByWhere(whereSql: string, params: any[], limit = 8, minRe
 
   const sql = `
     SELECT
-      c.*, g.name as guru_name, g.handle as guru_handle, g.image_url as guru_image_url, g.whop_url as guru_whop_url
+      c.*, g.name as guru_name, g.handle as guru_handle, g.image_url as guru_image_url, g.whop_url as guru_whop_url, g.guru_rating, g.guru_reviews_count
     FROM courses c
     JOIN gurus g ON g.id = c.guru_id
     WHERE COALESCE(g.hidden,0)=0 AND COALESCE(c.hidden,0)=0
@@ -55,7 +58,7 @@ export function listTopCoursesWeek(limit = 8): CourseWithGuru[] {
   // Sorted by RATING first (not review count) to differentiate from trending.
   const sql = `
     SELECT
-      c.*, g.name as guru_name, g.handle as guru_handle, g.image_url as guru_image_url, g.whop_url as guru_whop_url
+      c.*, g.name as guru_name, g.handle as guru_handle, g.image_url as guru_image_url, g.whop_url as guru_whop_url, g.guru_rating, g.guru_reviews_count
     FROM courses c
     JOIN gurus g ON g.id = c.guru_id
     WHERE COALESCE(g.hidden,0)=0 AND COALESCE(c.hidden,0)=0
@@ -116,7 +119,7 @@ export function listRecentlyGrowingCourses(limit = 10): CourseWithGuru[] {
 
   try {
     const sql = `
-      SELECT c.*, g.name as guru_name, g.handle as guru_handle, g.image_url as guru_image_url, g.whop_url as guru_whop_url,
+      SELECT c.*, g.name as guru_name, g.handle as guru_handle, g.image_url as guru_image_url, g.whop_url as guru_whop_url, g.guru_rating, g.guru_reviews_count,
              (COALESCE(g.whop_reviews_count, 0) - COALESCE(s.whop_reviews_count, 0)) as review_growth
       FROM gurus g
       JOIN courses c ON c.guru_id = g.id

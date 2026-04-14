@@ -47,10 +47,14 @@ export function TopCourseCard({ c }: { c: CourseWithGuru }) {
             </div>
             {/* Guru badge — light purple tint */}
             <div className="flex items-center gap-2 rounded-xl bg-violet-100 px-2.5 py-1.5 shadow-md">
-              <div className="text-lg font-bold text-violet-400 leading-none">—</div>
+              <div className="text-lg font-bold text-violet-400 leading-none">
+                {c.guru_rating != null ? c.guru_rating.toFixed(1) : '—'}
+              </div>
               <div className="leading-tight">
                 <div className="text-[11px] font-bold text-violet-800 tracking-wide">GURU</div>
-                <div className="text-[10px] text-violet-500">no data</div>
+                <div className="text-[10px] text-violet-500">
+                  {c.guru_reviews_count && c.guru_reviews_count > 0 ? `${c.guru_reviews_count} reviews` : 'no data'}
+                </div>
               </div>
             </div>
           </div>
