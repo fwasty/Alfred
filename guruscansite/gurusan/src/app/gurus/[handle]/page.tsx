@@ -8,6 +8,7 @@ import { GuruReviewForm } from '@/components/GuruReviewForm'
 import { GuruReviewList } from '@/components/GuruReviewList'
 import { JsonLd, guruJsonLd } from '@/components/JsonLd'
 import { ShareButtons } from '@/components/ShareButtons'
+import { ClaimForm } from '@/components/ClaimForm'
 import { getGuruByHandle, listCoursesForGuru, getWhopAggregateForGuru } from '@/lib/db'
 import { getSessionUserId } from '@/lib/auth'
 import { pickCreatorAt } from '@/lib/handles'
@@ -245,8 +246,16 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
                   </a>
                 )}
                 <Link href={`/creators/${guru.handle ?? ''}`}>
-                  <Button variant="ghost" className="w-full">View full creator profile</Button>
+                  <Button variant="ghost" className="w-full">View creator profile</Button>
                 </Link>
+                {!guru.claimed_by && (
+                  <a href="#claim-profile">
+                    <Button variant="ghost" className="w-full">✅ Claim this profile</Button>
+                  </a>
+                )}
+                {guru.claimed_by && guru.verified && (
+                  <div className="text-center text-xs text-emerald-600 font-medium">✅ Verified & Claimed</div>
+                )}
               </div>
             </div>
           </Card>
@@ -373,6 +382,33 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
             <GuruReviewList guruId={guru.id} />
           </div>
         </section>
+
+        {/* Claim Profile */}
+        {!guru.claimed_by && (
+          <section id="claim-profile">
+            <h2 className="text-xl font-semibold text-[color:var(--text)]">Claim This Profile</h2>
+            <p className="mt-1 text-sm text-[color:var(--muted)]">
+              Are you {displayName}? Claim your profile to get verified and reply to reviews.
+            </p>
+            <div className="mt-4">
+              {userId ? (
+                <ClaimForm guruId={guru.id} guruName={displayName} />
+              ) : (
+                <div className="rounded-2xl border border-violet-500/15 bg-violet-500/5 p-5 text-center">
+                  <div className="text-sm font-medium text-[color:var(--text)]">Sign in to claim this profile</div>
+                  <div className="mt-2 flex gap-2 justify-center">
+                    <Link href={`/signup?next=/gurus/${guru.handle ?? ''}`}>
+                      <Button>Sign up</Button>
+                    </Link>
+                    <Link href={`/login?next=/gurus/${guru.handle ?? ''}`}>
+                      <Button variant="ghost">Log in</Button>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
       </div>
     </Shell>
   )

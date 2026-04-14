@@ -11,6 +11,8 @@ type Review = {
   recommend: number | null
   tags: string | null
   username: string
+  reply: string | null
+  reply_at: number | null
   created_at: number
   updated_at: number
 }
@@ -85,6 +87,16 @@ export function GuruReviewList({ guruId }: { guruId: string }) {
             </div>
           </div>
           <div className="mt-2 text-sm text-[color:var(--muted)] leading-relaxed">{r.body}</div>
+          {r.reply && (
+            <div className="mt-3 rounded-xl border border-emerald-500/15 bg-emerald-500/5 p-3">
+              <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-700">
+                <span>✅</span>
+                <span>Owner Reply</span>
+                {r.reply_at && <span className="text-emerald-600/60">· {timeAgo(r.reply_at)}</span>}
+              </div>
+              <div className="mt-1 text-sm text-[color:var(--muted)] leading-relaxed">{r.reply}</div>
+            </div>
+          )}
           {r.tags && (
             <div className="mt-2 flex flex-wrap gap-1">
               {r.tags.split(',').map((tag) => (

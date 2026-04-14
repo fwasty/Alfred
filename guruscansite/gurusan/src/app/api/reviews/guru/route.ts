@@ -90,6 +90,7 @@ export async function GET(req: Request) {
 
   const reviews = db.prepare(`
     SELECT r.id, r.rating, r.title, r.body, r.anonymous, r.recommend, r.tags,
+           r.reply, r.reply_at,
            r.created_at, r.updated_at,
            CASE WHEN r.anonymous = 1 THEN 'Anonymous' ELSE u.username END as username
     FROM reviews r

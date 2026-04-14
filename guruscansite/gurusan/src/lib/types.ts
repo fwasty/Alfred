@@ -23,6 +23,8 @@ export type DbGuru = {
   whop_synced_at: number | null
   guru_rating: number | null
   guru_reviews_count: number | null
+  claimed_by: string | null
+  claimed_at: number | null
   created_at: number
   updated_at: number
 }
