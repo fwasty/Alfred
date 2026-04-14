@@ -74,7 +74,7 @@ async function fetchAndAdd(route, category) {
       rx1(html, /"company":\{[^}]*?"title":"([^"]+)/) ||
       rx1(html, /property=["']og:title["'][^>]+content=["']([^"']+)["']/i)
 
-    if (!title || title.includes('Page not found')) return null
+    if (!title || title.includes('Page not found') || title.includes('Vercel') || title.includes('Security Checkpoint') || title.includes('Discover | Whop')) return null
     // Clean generic Whop titles
     if (title.includes('Whop: Start a Business')) {
       title = route.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ').replace(/\s+\w{4,}$/, '')

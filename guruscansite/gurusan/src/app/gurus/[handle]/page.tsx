@@ -42,6 +42,10 @@ export default async function GuruPage({ params }: { params: Promise<{ handle: s
       const { ingestWhopCompanyFromPublicUrl } = await import('@/lib/whop')
       const { updateGuruFromWhop, upsertCourseFromWhop } = await import('@/lib/db')
       const ingest = await ingestWhopCompanyFromPublicUrl(guru.whop_url!)
+      // SAFETY: skip if Whop returned a security page
+      if (ingest.title && (ingest.title.includes('Vercel') || ingest.title.includes('Security Checkpoint'))) {
+        // Don't save garbage data
+      } else
       updateGuruFromWhop(handle, {
         whop_url: ingest.whop_url,
         whop_route: ingest.route,

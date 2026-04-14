@@ -155,6 +155,14 @@ async function main() {
         continue
       }
 
+      // SAFETY: Never save Vercel security page data as real data
+      if (data.title && (data.title.includes('Vercel') || data.title.includes('Security Checkpoint') || data.title.includes('Discover | Whop'))) {
+        console.log(`  [BLOCKED] ${g.name} — got Vercel security page, skipping`)
+        failed++
+        await sleep(DELAY_MS)
+        continue
+      }
+
       const now = Date.now()
       updateGuru.run(
         data.reviews_average,

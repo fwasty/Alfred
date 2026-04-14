@@ -80,7 +80,7 @@ async function fetchAndAdd(route, category) {
     rx1(html, /"company":\{[^}]*?"title":"([^"]+)/) ||
     rx1(html, /property=["']og:title["'][^>]+content=["']([^"']+)["']/i)
 
-  if (!title || title.includes('Page not found')) return null
+  if (!title || title.includes('Page not found') || title.includes('Vercel') || title.includes('Security Checkpoint') || title.includes('Discover | Whop')) return null
 
   const bio = rx1(html, /creatorPitch\\":\\"([^\\"]+)/) || rx1(html, /"creatorPitch":"([^"]+)/)
   const reviews_average = (() => { const v = rx1(html, /reviewsAverage\\":(\d+(?:\.\d+)?)/) || rx1(html, /"reviewsAverage":(\d+(?:\.\d+)?)/); return v ? Number(v) : null })()
