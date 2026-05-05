@@ -27,7 +27,6 @@ export default async function Home({
   // Stats for social proof
   const guruCount = (db.prepare("SELECT COUNT(*) as c FROM gurus WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
   const courseCount = (db.prepare("SELECT COUNT(*) as c FROM courses WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
-  const categoryCount = (db.prepare("SELECT COUNT(DISTINCT category) as c FROM gurus WHERE COALESCE(hidden,0)=0").get() as {c:number}).c
 
   const whopFeaturedPlaylistId = 'PLNAr8MH2RWDjxDDDYTlFc7P5wyZwSmN9J'
   const whopVideos = await fetchPlaylistVideos(whopFeaturedPlaylistId, 12)
@@ -196,16 +195,16 @@ export default async function Home({
         {/* Social proof stats */}
         <section className="grid grid-cols-3 gap-3 sm:gap-4">
           <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/8 p-4 text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-emerald-600">{guruCount.toLocaleString()}</div>
-            <div className="mt-1 text-xs font-medium text-emerald-600/70">Gurus rated</div>
+            <div className="text-2xl sm:text-3xl font-bold text-emerald-600">{guruCount.toLocaleString()}+</div>
+            <div className="mt-1 text-[11px] sm:text-xs font-medium text-emerald-600/70">Gurus indexed</div>
           </div>
           <div className="rounded-xl border border-violet-500/20 bg-violet-500/8 p-4 text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-violet-600">{courseCount.toLocaleString()}</div>
-            <div className="mt-1 text-xs font-medium text-violet-600/70">Courses tracked</div>
+            <div className="text-2xl sm:text-3xl font-bold text-violet-600">{courseCount.toLocaleString()}+</div>
+            <div className="mt-1 text-[11px] sm:text-xs font-medium text-violet-600/70">Courses tracked</div>
           </div>
           <div className="rounded-xl border border-sky-500/20 bg-sky-500/8 p-4 text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-sky-600">{categoryCount}</div>
-            <div className="mt-1 text-xs font-medium text-sky-600/70">Categories</div>
+            <div className="text-2xl sm:text-3xl font-bold text-sky-600">100%</div>
+            <div className="mt-1 text-[11px] sm:text-xs font-medium text-sky-600/70">Independent</div>
           </div>
         </section>
 

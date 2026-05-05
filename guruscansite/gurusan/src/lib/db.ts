@@ -111,7 +111,7 @@ export function listGurus(opts?: { category?: string | null }): DbGuru[] {
         OR g.category = ?
       )
     ORDER BY COALESCE(g.whop_reviews_count,0) DESC, COALESCE(g.whop_rating,0) DESC, g.created_at DESC
-    LIMIT 500
+    LIMIT 150
   `
   const category = opts?.category && opts.category !== 'All' ? String(opts.category) : null
   return db.prepare(sql).all(category, category) as DbGuru[]
