@@ -80,7 +80,7 @@ export function SearchHero({ items }: { items: Item[] }) {
               <div className="overflow-y-auto flex-1 pb-8">
                 {results.map((r) => (
                   <Link key={r.key} href={r.href} onClick={handleSelect}
-                    className="flex items-center gap-3 px-4 py-3 text-sm text-[color:var(--text)] active:bg-[color:var(--surface-2)] border-b border-[color:var(--border)] last:border-0">
+                    className="flex items-center gap-3 px-4 py-3 text-sm text-[color:var(--text)] active:bg-[color:var(--surface-2)] border-b border-[color:var(--border)]">
                     <img src={r.image_url || `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(r.key)}`}
                       alt={r.name} className="size-10 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-2)] object-cover shrink-0" />
                     <div className="min-w-0">
@@ -89,6 +89,11 @@ export function SearchHero({ items }: { items: Item[] }) {
                     </div>
                   </Link>
                 ))}
+                <Link href="/list-your-course" onClick={handleSelect}
+                  className="flex items-center gap-3 px-4 py-3 text-sm text-[color:var(--accent)] font-medium">
+                  <span className="text-lg">+</span>
+                  <span>Can't find it? Add a guru →</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -106,6 +111,11 @@ export function SearchHero({ items }: { items: Item[] }) {
                 </div>
               </Link>
             ))}
+            <Link href="/list-your-course" onClick={handleSelect}
+              className="flex items-center gap-2 px-4 py-2.5 text-sm text-[color:var(--accent)] font-medium hover:bg-[color:var(--surface-2)] transition border-t border-[color:var(--border)]">
+              <span>+</span>
+              <span>Can't find it? Add a guru →</span>
+            </Link>
           </div>
         </>
       )}
